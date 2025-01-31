@@ -1,147 +1,39 @@
-import { ReactNode, useContext } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
-import { ToastAlerta } from "../../utils/ToastAlerta";
+import { useState, useRef, useEffect } from "react";
+import { Menu, Search, User } from "lucide-react";
 
-function Navbar() {
-  const navigate = useNavigate();
-  const { usuario, handleLogout } = useContext(AuthContext);
-  const location = useLocation();
+export default function Navbar() {
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
+    const menuRef = useRef<HTMLDivElement>(null);
 
-  if (location.pathname === "/login" || location.pathname === "/cadastro") {
-    return null;
-  }
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                setMenuOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
-  function logout() {
-    handleLogout();
-    ToastAlerta("O Usuário foi desconectado com sucesso!", "info");
-    navigate("/home");
-  }
+    return (
+        <nav className="flex justify-between items-center bg-gray-900 text-white p-4">
+            <div className="text-xl font-bold">Devlivery</div>
 
-  let component: ReactNode;
-
-  if (usuario.token !== "") {
-    component = (
-      <header className="w-full top-0 left-0 transition-all duration-500 bg-black py-4">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex items-center justify-between">
-            <Link to="/home" className="text-white text-2xl">
-              <img
-                src="https://i.imgur.com/RhVXHKF.png"
-                alt="Logo DevFit"
-                className="w-14"
-              />
-            </Link>
-
-            <nav>
-              <ul className="flex space-x-12">
-                <li>
-                  <Link
-                    to="/categorias"
-                    className="text-white hover:text-yellow-500"
-                  >
-                    Categorias
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/produtos"
-                    className="text-white hover:text-yellow-500"
-                  >
-                    Produtos
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/perfil"
-                    className="text-white hover:text-yellow-500"
-                  >
-                    ÁREA DO ALUNO
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/about"
-                    className="text-white hover:text-yellow-500"
-                  >
-                    SOBRE NÒS
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-
-            <button
-              onClick={logout}
-              className="w-32 h-10 bg-red-500 hover:bg-red-700 text-white font-bold rounded transition-all duration-200"
-            >
-              SAIR
-            </button>
-          </div>
-        </div>
-      </header>
-    );
-  } else {
-    component = (
-      <header className="w-full top-0 left-0 transition-all duration-500 bg-black py-4">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex items-center justify-between">
-            <Link to="/home" className="text-white text-2xl">
-              <img
-                src="https://i.imgur.com/RhVXHKF.png"
-                alt="Logo DevFit"
-                className="w-14"
-              />
-            </Link>
-
-            <nav>
-              <ul className="flex space-x-12">
-                <li>
-                  <Link
-                    to="/listacategorias"
-                    className="text-white hover:text-yellow-500"
-                  >
-                    EXERCÍCIOS
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/produtos"
-                    className="text-white hover:text-yellow-500"
-                  >
-                    Produtos
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/about"
-                    className="text-white hover:text-yellow-500"
-                  >
-                    SOBRE
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-
-            <div className="flex gap-4">
-              <Link to="/login">
-                <button className="w-32 h-10 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded transition-all duration-200">
-                  LOGIN
+            <div className="relative" ref={menuRef}>
+                <button onClick={() => setMenuOpen(!menuOpen)} className="p-2 rounded-full bg-gray-700 hover:bg-gray-600">
+                    <User size={24} />
                 </button>
-              </Link>
 
-              <Link to="/cadastro">
-                <button className="w-32 h-10 bg-orange-400 hover:bg-orange-600 text-white font-bold rounded transition-all duration-200">
-                  MATRICULE-SE
-                </button>
-              </Link>
+                {menuOpen && (
+                    <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg overflow-hidden animate-fade-in">
+                        <a href="#" className="block px-4 py-2 hover:bg-gray-200">Meu Perfil</a>
+                        <a href="#" className="block px-4 py-2 hover:bg-gray-200">Meu Carrinho</a>
+                        <hr />
+                        <button className="w-full text-left px-4 py-2 hover:bg-gray-200">Sair</button>
+                    </div>
+                )}
             </div>
-          </div>
-        </div>
-      </header>
+        </nav>
     );
-  }
-
-  return <>{component}</>;
 }
-
-export default Navbar;
