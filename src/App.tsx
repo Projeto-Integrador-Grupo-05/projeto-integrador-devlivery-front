@@ -1,10 +1,14 @@
 import Navbar from "./components/navbar/Navbar";
 import './App.css'
+import Footer from "./components/footer/Footer";
+
+
 
 function App() {
   return (
     <>
       <Navbar/>
+      <Footer/>
     </>
   );
 }

@@ -1,48 +1,63 @@
-import {
-  FacebookLogo,
-  InstagramLogo,
-  LinkedinLogo,
-} from "@phosphor-icons/react";
-import { ReactNode, useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
+import { FacebookLogo, InstagramLogo, YoutubeLogo, XLogo } from "@phosphor-icons/react";
 
 function Footer() {
-  let data = new Date().getFullYear();
-
-  const { usuario } = useContext(AuthContext);
-
-  let component: ReactNode;
-
-  if (usuario.token !== "") {
-    component = (
-      <div className="">
-        <div className="container flex flex-col items-center py-4">
-          <p className="text-xl font-bold">
-            Quitanda do Zé | Copyright: {data}
-          </p>
-          <p className="text-lg">Acesse nossas redes sociais</p>
-          <div className="flex gap-2">
-            <a
-              href="https://www.linkedin.com/school/generationbrasil"
-              target="_blank"
-            >
-              <LinkedinLogo size={48} weight="bold" />
-            </a>
-            <a
-              href="https://www.instagram.com/generationbrasil"
-              target="_blank"
-            >
-              <InstagramLogo size={48} weight="bold" />
-            </a>
-            <a href="https://www.facebook.com/generationbrasil" target="_blank">
-              <FacebookLogo size={48} weight="bold" />
-            </a>
+  return (
+    <footer className="bg-gray-900 text-gray-300 py-8 mt-auto">
+      <div className="container mx-auto flex flex-col items-center">
+        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-6 px-6 w-full max-w-6xl text-center md:text-left space-x-20">
+          <div>
+            <h3 className="text-green-400 font-semibold mb-3">Institucional</h3>
+            <ul className="space-y-2">
+              <li><a href="#" className="hover:text-white">Quem somos</a></li>
+              <li><a href="#" className="hover:text-white">Trabalhe Conosco</a></li>
+            </ul>
           </div>
+
+          <div>
+            <h3 className="text-green-400 font-semibold mb-3">Categorias</h3>
+            <ul className="space-y-2">
+              <li><a href="#" className="hover:text-white">Alimentos</a></li>
+              <li><a href="#" className="hover:text-white">Bebidas</a></li>
+              <li><a href="#" className="hover:text-white">Cuidados Pessoais</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-green-400 font-semibold mb-3">Central de Atendimento</h3>
+            <ul className="space-y-2">
+              <li><a href="tel:08007796761" className="hover:text-white">9999 999 9999</a></li>
+              <li><a href="#" className="hover:text-white">Dúvidas Frequentes</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-green-400 font-semibold mb-3">Nossas Redes Sociais</h3>
+            <div className="flex justify-center md:justify-start space-x-4">
+              <a href="#" className="group m-2 w-20 h-20 flex items-center justify-center rounded-full transition duration-300 ease-in-out">
+                <FacebookLogo size={32} className="text-[var(--color)] transition duration-300 ease-in-out group-hover:text-blue-700" />
+              </a>
+              <a href="#" className="group m-2 w-20 h-20 flex items-center justify-center rounded-full transition duration-300 ease-in-out">
+                <InstagramLogo size={32} className="text-[var(--color)] transition duration-300 ease-in-out group-hover:text-orange-600" />
+              </a>
+              <a href="#" className="group m-2 w-20 h-20 flex items-center justify-center rounded-full transition duration-300 ease-in-out">
+                <YoutubeLogo size={32} className="text-[var(--color)] transition duration-300 ease-in-out group-hover:text-red-600" />
+              </a>
+              <a href="#" className="group m-2 w-20 h-20 flex items-center justify-center rounded-full transition duration-300 ease-in-out">
+                <XLogo size={32} className="text-[var(--color)] transition duration-300 ease-in-out group-hover:text-gray-700" />
+              </a>
+            </div>
+          </div>
+
+
         </div>
       </div>
-    );
-  }
-  return <>{component}</>;
+
+      <div className="text-center text-sm border-t border-gray-700 mt-6 pt-4">
+        2025 © Todos os Direitos Reservados | Política de Privacidade
+      </div>
+    </footer>
+  );
 }
 
 export default Footer;
