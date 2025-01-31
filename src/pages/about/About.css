@@ -1,0 +1,187 @@
+/* global.css */
+
+/* Reset global para garantir a consistência de estilos */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif; /* Defina a fonte global */
+  line-height: 1.6;
+  color: #333; /* Cor padrão do texto */
+  background-color: #f9f9f9;
+  text-align: left; /* Centraliza os textos por padrão */
+}
+
+/* Estilos de título */
+h1,
+h2,
+h3,
+h4 p {
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  font-weight: 900;
+}
+
+h2 {
+  font-weight: 700;
+}
+
+h3,
+h4 {
+  font-weight: 600;
+}
+
+/* Seção de Força */
+.força-img {
+  width: 100vw;
+  height: 400px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/* Seção Missão */
+.missao h1.titulo1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #ee8937;
+}
+
+section.missao {
+  margin-top: 500px;
+}
+
+/* Seção Sobre a DEVfit */
+.sobredev {
+  text-align: left;
+  font-size: 1.8rem;
+}
+
+/* Centralizando conteúdo */
+.text-center {
+  text-align: center;
+}
+
+/* Estilo para a academia */
+.academia {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.academia img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: 0.3s ease;
+}
+
+.academia img:hover {
+  box-shadow: 0 0 30px 10px rgba(226, 171, 51, 0.9);
+}
+
+/* Estilo do card */
+.here-card {
+  border: 2px solid #e2a343;
+  padding: 16px;
+  border-radius: 8px;
+  transition: 0.3s ease;
+  margin: 16px;
+  position: relative;
+  height: 650px;
+}
+
+.here-card:hover {
+  box-shadow: 0 0 30px 10px rgba(226, 171, 51, 0.9);
+}
+
+.here-card .img img {
+  width: 200px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 20px;
+}
+
+.text {
+  font-size: 1rem;
+}
+
+.text h4 {
+  font-weight: 600;
+}
+
+/* Carrossel e Slick */
+.slick-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #e2a343 !important;
+  font-size: 24px !important;
+}
+
+.slick-prev:hover:before,
+.slick-next:hover:before {
+  color: #d88e29 !important;
+}
+
+/* Perguntas frequentes */
+.faq h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4c4c4c;
+}
+
+.faq button {
+  text-align: left;
+  font-size: 1.2rem;
+  color: #4c4c4c;
+  background: transparent;
+  border: none;
+  padding: 10px 0;
+  width: 100%;
+}
+
+.faq button:hover {
+  color: #e2a343;
+}
+
+.faq .text-gray-700 {
+  margin-top: 10px;
+}
+p.mb-6 {
+  text-align: justify !important;
+}
+
+/*--------------------*/
+/* Títulos de Seção de "Sobre a DEVfit" e "Nossos Colaboradores" */
+.sobredev,
+.text-left h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4c4c4c; /* Mesma cor que o título da FAQ */
+}
+
+/* Estilo de texto das descrições em "Sobre a DEVfit" e "Nossos Colaboradores" */
+.sobredev p,
+.text-left p {
+  font-size: 1.2rem;
+  color: #4c4c4c; /* Mesma cor que as respostas da FAQ */
+}
+.bio {
+  text-align: justify;
+}
