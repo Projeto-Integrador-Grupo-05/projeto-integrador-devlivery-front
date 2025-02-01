@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect } from "react";
-import { Search, User } from "lucide-react";
+import { ShoppingCart, User } from "lucide-react";
+import Search from "../search/Search";
 
- function Navbar() {
+function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
-    const [user, setUser] = useState(null); // Simula usuário logado ou não
     const menuRef = useRef<HTMLDivElement>(null);
+
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -16,7 +18,16 @@ import { Search, User } from "lucide-react";
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
+    const handleCartClick = () => {
+        if (!token) {
+            alert("Você precisa estar logado para acessar o carrinho!");
+        } else {
+            window.location.href = "/carrinho";
+        }
+    };
+
     return (
+      
         <nav className="flex justify-between items-center bg-gray-900 text-white p-4">
             <img src="https://i.imgur.com/fBJcXWf.png" alt="LogoDevlivery" className="w-32" />
 
@@ -26,34 +37,44 @@ import { Search, User } from "lucide-react";
                     placeholder="Buscar..."
                     className="bg-transparent text-black outline-none w-full"
                 />
-                <Search size={24} className="text-gray-600" />
-            </div>
 
-            <div className="relative" ref={menuRef}>
-                <button onClick={() => setMenuOpen(!menuOpen)} className="p-2 rounded-full bg-gray-700 hover:bg-gray-600">
-                    <User size={24} />
-                </button>
+                <div className="relative" ref={menuRef}>
+                    <button
+                        onClick={() => setMenuOpen(!menuOpen)}
+                        className="p-2 rounded-full bg-[#ff3c00] hover:bg-[#ff3c00cc]"
+                    >
+                        <User size={24} className="text-[#fff6cc]" />
+                    </button>
 
-                {menuOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg overflow-hidden animate-fade-in">
-                        {user ? (
-                            <>
-                                <a href="#" className="block px-4 py-2 hover:bg-gray-200">Meu Perfil</a>
-                                <a href="#" className="block px-4 py-2 hover:bg-gray-200">Meu Carrinho</a>
-                                <hr />
-                                <button onClick={() => setUser(null)} className="w-full text-left px-4 py-2 hover:bg-gray-200">Sair</button>
-                            </>
-                        ) : (
-                            <>
-                                <a href="#" className="block px-4 py-2 hover:bg-gray-200">Login</a>
-                                <a href="#" className="block px-4 py-2 hover:bg-gray-200">Criar Conta</a>
-                            </>
-                        )}
-                    </div>
-                )}
+                    {menuOpen && (
+                        <div className="absolute right-0 mt-2 w-48 bg-[#fff6cc] text-[#002914] rounded-lg shadow-lg overflow-hidden animate-fade-in">
+                            {token ? (
+                                <>
+                                    <a href="#" className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]">Meu Perfil</a>
+                                    <a href="/carrinho" className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]">Meu Carrinho</a>
+                                    <hr />
+                                    <button
+                                        onClick={() => {
+                                            localStorage.removeItem("token");
+                                            window.location.reload();
+                                        }}
+                                        className="w-full text-left px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
+                                    >
+                                        Sair
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <a href="/login" className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]">Login</a>
+                                    <a href="/cadastro" className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]">Criar Conta</a>
+                                </>
+                            )}
+                        </div>
+                    )}
+                </div>
             </div>
         </nav>
     );
 }
 
-export default Navbar
+export default Navbar;

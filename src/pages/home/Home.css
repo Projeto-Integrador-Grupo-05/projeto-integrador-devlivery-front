@@ -1,0 +1,19 @@
+/* Estilo para da galeria */
+.galeria {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .galeria img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: 0.3s ease;
+  }
+  
+  .galeria img:hover {
+    box-shadow: 0 0 30px 10px rgba(226, 171, 51, 0.9);
+  }
