@@ -1,43 +1,74 @@
-import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-import { AuthContext } from "../../context/AuthContext";
+export default function DeliveryProfile() {
+  const [editing, setEditing] = useState(false);
+  const [user, setUser] = useState({
+    name: "Carlos Santos",
+    email: "carlos.delivery@email.com",
+    phone: "(11) 98765-4321",
+    address: "Av. Central, 456, São Paulo - SP",
+    photo: "https://www.patasdacasa.com.br/sites/default/files/styles/article_detail_desktop/public/inline-images/meme-gato-sorrindo.jpg.webp?itok=uzMISCk1"
+  });
 
-function Perfil() {
-  const navigate = useNavigate();
-
-  const { usuario } = useContext(AuthContext);
-
-  useEffect(() => {
-    if (usuario.token === "") {
-      alert("Você precisa estar logado");
-      navigate("/");
-    }
-  }, [usuario.token]);
+  const handleEdit = () => setEditing(!editing);
+  
+  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
 
   return (
-    <div className="container mx-auto m-4 rounded-2xl overflow-hidden">
-      {/* <img
-        className="w-full h-72 object-cover border-b-8 border-white"
-        src="https://i.imgur.com/ZZFAmzo.jpg"
-        alt="Capa do Perfil"
-      />
-
-      <img
-        className="rounded-full w-56 mx-auto mt-[-8rem] border-8 border-white relative z-10"
-        src={usuario.foto}
-        alt={`Foto de perfil de ${usuario.nome}`}
-      /> */}
-
-      <div
-        className="relative mt-[-6rem] h-72 flex flex-col 
-                    bg-sky-500 text-white text-2xl items-center justify-center"
-      >
-        <p>Nome: {usuario.nome} </p>
-        <p>Email: {usuario.email}</p>
+    <div className="flex flex-col items-center p-6">
+      <div className="w-full max-w-md p-6 shadow-lg rounded-2xl border border-gray-300 bg-white">
+        <div className="flex flex-col items-center mb-4">
+          <img src={user.photo} alt="Foto do Entregador" className="w-24 h-24 rounded-full border mb-4" />
+          <h2 className="text-xl font-semibold">Perfil</h2>
+        </div>
+        <div className="flex justify-between items-center mb-4">
+          <button 
+            onClick={handleEdit} 
+            className="px-4 py-2 border rounded-lg bg-gray-200 hover:bg-gray-300 transition">
+            {editing ? "Salvar" : "Editar"}
+          </button>
+        </div>
+        <div className="space-y-4">
+          <input
+            type="text"
+            name="name"
+            value={user.name}
+            onChange={handleChange}
+            disabled={!editing}
+            placeholder="Nome"
+            className="w-full p-2 border rounded-lg"
+          />
+          <input
+            type="email"
+            name="email"
+            value={user.email}
+            onChange={handleChange}
+            disabled={!editing}
+            placeholder="Email"
+            className="w-full p-2 border rounded-lg"
+          />
+          <input
+            type="tel"
+            name="phone"
+            value={user.phone}
+            onChange={handleChange}
+            disabled={!editing}
+            placeholder="Telefone"
+            className="w-full p-2 border rounded-lg"
+          />
+          <input
+            type="text"
+            name="address"
+            value={user.address}
+            onChange={handleChange}
+            disabled={!editing}
+            placeholder="Endereço"
+            className="w-full p-2 border rounded-lg"
+          />
+        </div>
       </div>
     </div>
   );
 }
-
-export default Perfil;
