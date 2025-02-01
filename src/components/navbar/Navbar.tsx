@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Search, User } from "lucide-react";
+import { User } from "lucide-react";
 
  function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -20,15 +20,6 @@ import { Search, User } from "lucide-react";
         <nav className="flex justify-between items-center bg-gray-900 text-white p-4">
             {/* Corrigir o link para home pela logo */}
             <img src="https://i.imgur.com/fBJcXWf.png" alt="LogoDevlivery" className="w-32" />
-
-            <div className="flex items-center gap-2 border rounded-full w-full md:w-1/3 lg:w-1/4 px-4 py-2 bg-gray-200">
-                <input
-                    type="text"
-                    placeholder="Buscar..."
-                    className="bg-transparent text-black outline-none w-full"
-                />
-                <Search size={24} className="text-gray-600" />
-            </div>
 
             <div className="relative" ref={menuRef}>
                 <button onClick={() => setMenuOpen(!menuOpen)} className="p-2 rounded-full bg-gray-700 hover:bg-gray-600">
