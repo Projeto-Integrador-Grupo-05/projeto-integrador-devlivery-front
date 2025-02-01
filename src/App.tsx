@@ -1,5 +1,6 @@
 import Navbar from "./components/navbar/Navbar";
 import './App.css'
+
 import { AuthProvider } from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter, Route, Routes } from "react-router-dom";

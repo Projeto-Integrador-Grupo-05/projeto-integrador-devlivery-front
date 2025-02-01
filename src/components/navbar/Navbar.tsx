@@ -27,14 +27,15 @@ function Navbar() {
     };
 
     return (
-        <nav className="flex justify-between items-center bg-[#002914] text-[#fff6cc] p-4">
-            <img src="https://i.imgur.com/fBJcXWf.png" alt="LogoDevlivery" className="w-32 ml-28" />
-            <Search />
+      
+        <nav className="flex justify-between items-center bg-gray-900 text-white p-4">
+            <img src="https://i.imgur.com/fBJcXWf.png" alt="LogoDevlivery" className="w-32" />
 
-            <div className="flex items-center space-x-6 pr-4">
-                <ShoppingCart
-                    className="w-6 h-6 text-[#fff6cc] cursor-pointer hover:text-[#ff3c00]"
-                    onClick={handleCartClick}
+            <div className="flex items-center gap-2 border rounded-full w-full md:w-1/3 lg:w-1/4 px-4 py-2 bg-gray-200">
+                <input
+                    type="text"
+                    placeholder="Buscar..."
+                    className="bg-transparent text-black outline-none w-full"
                 />
 
                 <div className="relative" ref={menuRef}>
