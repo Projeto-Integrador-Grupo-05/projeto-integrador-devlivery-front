@@ -1,5 +1,10 @@
 import Navbar from "./components/navbar/Navbar";
 import './App.css'
+import { AuthProvider } from "./context/AuthContext";
+import { ToastContainer } from "react-toastify";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Footer from "./components/footer/Footer";
+import Home from './pages/home/Home'
 
 function App() {
  
@@ -13,15 +18,12 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/home" element={<Home />} />
-              <Route path="/cadastro" element={<Cadastro />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/perfil" element={<Perfil />} />
-              <Route path="/about" element={<About />} />
             </Routes>
           </div>
-          <Footer />
+          <Footer/>
         </BrowserRouter>
       </AuthProvider>
+      </>
   );
 }
       
