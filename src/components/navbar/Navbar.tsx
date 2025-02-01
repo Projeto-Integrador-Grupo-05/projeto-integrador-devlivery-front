@@ -18,7 +18,6 @@ import { Search, User } from "lucide-react";
 
     return (
         <nav className="flex justify-between items-center bg-gray-900 text-white p-4">
-            {/* Corrigir o link para home pela logo */}
             <img src="https://i.imgur.com/fBJcXWf.png" alt="LogoDevlivery" className="w-32" />
 
             <div className="flex items-center gap-2 border rounded-full w-full md:w-1/3 lg:w-1/4 px-4 py-2 bg-gray-200">
