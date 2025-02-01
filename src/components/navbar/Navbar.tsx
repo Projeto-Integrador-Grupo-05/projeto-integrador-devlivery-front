@@ -1,147 +1,79 @@
-import { ReactNode, useContext } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
-import { ToastAlerta } from "../../utils/ToastAlerta";
+import { useState, useRef, useEffect } from "react";
+import { ShoppingCart, User } from "lucide-react";
+import Search from "../search/Search";
 
 function Navbar() {
-  const navigate = useNavigate();
-  const { usuario, handleLogout } = useContext(AuthContext);
-  const location = useLocation();
+    const [menuOpen, setMenuOpen] = useState(false);
+    const menuRef = useRef<HTMLDivElement>(null);
 
-  if (location.pathname === "/login" || location.pathname === "/cadastro") {
-    return null;
-  }
+    const token = localStorage.getItem("token");
 
-  function logout() {
-    handleLogout();
-    ToastAlerta("O Usuário foi desconectado com sucesso!", "info");
-    navigate("/home");
-  }
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                setMenuOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
-  let component: ReactNode;
+    const handleCartClick = () => {
+        if (!token) {
+            alert("Você precisa estar logado para acessar o carrinho!");
+        } else {
+            window.location.href = "/carrinho";
+        }
+    };
 
-  if (usuario.token !== "") {
-    component = (
-      <header className="w-full top-0 left-0 transition-all duration-500 bg-black py-4">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex items-center justify-between">
-            <Link to="/home" className="text-white text-2xl">
-              <img
-                src="https://i.imgur.com/RhVXHKF.png"
-                alt="Logo DevFit"
-                className="w-14"
-              />
-            </Link>
+    return (
+        <nav className="flex justify-between items-center bg-[#002914] text-[#fff6cc] p-4">
+            <img src="https://i.imgur.com/fBJcXWf.png" alt="LogoDevlivery" className="w-32 ml-28" />
+            <Search />
 
-            <nav>
-              <ul className="flex space-x-12">
-                <li>
-                  <Link
-                    to="/categorias"
-                    className="text-white hover:text-yellow-500"
-                  >
-                    Categorias
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/produtos"
-                    className="text-white hover:text-yellow-500"
-                  >
-                    Produtos
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/perfil"
-                    className="text-white hover:text-yellow-500"
-                  >
-                    ÁREA DO ALUNO
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/about"
-                    className="text-white hover:text-yellow-500"
-                  >
-                    SOBRE NÒS
-                  </Link>
-                </li>
-              </ul>
-            </nav>
+            <div className="flex items-center space-x-6 pr-4">
+                <ShoppingCart
+                    className="w-6 h-6 text-[#fff6cc] cursor-pointer hover:text-[#ff3c00]"
+                    onClick={handleCartClick}
+                />
 
-            <button
-              onClick={logout}
-              className="w-32 h-10 bg-red-500 hover:bg-red-700 text-white font-bold rounded transition-all duration-200"
-            >
-              SAIR
-            </button>
-          </div>
-        </div>
-      </header>
-    );
-  } else {
-    component = (
-      <header className="w-full top-0 left-0 transition-all duration-500 bg-black py-4">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex items-center justify-between">
-            <Link to="/home" className="text-white text-2xl">
-              <img
-                src="https://i.imgur.com/RhVXHKF.png"
-                alt="Logo DevFit"
-                className="w-14"
-              />
-            </Link>
+                <div className="relative" ref={menuRef}>
+                    <button
+                        onClick={() => setMenuOpen(!menuOpen)}
+                        className="p-2 rounded-full bg-[#ff3c00] hover:bg-[#ff3c00cc]"
+                    >
+                        <User size={24} className="text-[#fff6cc]" />
+                    </button>
 
-            <nav>
-              <ul className="flex space-x-12">
-                <li>
-                  <Link
-                    to="/listacategorias"
-                    className="text-white hover:text-yellow-500"
-                  >
-                    EXERCÍCIOS
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/produtos"
-                    className="text-white hover:text-yellow-500"
-                  >
-                    Produtos
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/about"
-                    className="text-white hover:text-yellow-500"
-                  >
-                    SOBRE
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-
-            <div className="flex gap-4">
-              <Link to="/login">
-                <button className="w-32 h-10 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded transition-all duration-200">
-                  LOGIN
-                </button>
-              </Link>
-
-              <Link to="/cadastro">
-                <button className="w-32 h-10 bg-orange-400 hover:bg-orange-600 text-white font-bold rounded transition-all duration-200">
-                  MATRICULE-SE
-                </button>
-              </Link>
+                    {menuOpen && (
+                        <div className="absolute right-0 mt-2 w-48 bg-[#fff6cc] text-[#002914] rounded-lg shadow-lg overflow-hidden animate-fade-in">
+                            {token ? (
+                                <>
+                                    <a href="#" className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]">Meu Perfil</a>
+                                    <a href="/carrinho" className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]">Meu Carrinho</a>
+                                    <hr />
+                                    <button
+                                        onClick={() => {
+                                            localStorage.removeItem("token");
+                                            window.location.reload();
+                                        }}
+                                        className="w-full text-left px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
+                                    >
+                                        Sair
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <a href="/login" className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]">Login</a>
+                                    <a href="/cadastro" className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]">Criar Conta</a>
+                                </>
+                            )}
+                        </div>
+                    )}
+                </div>
             </div>
-          </div>
-        </div>
-      </header>
+        </nav>
     );
-  }
-
-  return <>{component}</>;
 }
 
 export default Navbar;
