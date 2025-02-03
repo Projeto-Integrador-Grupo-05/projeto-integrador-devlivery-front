@@ -5,6 +5,7 @@ import { store } from "./redux/Store";
 import "./App.css";
 import Footer from "./components/footer/Footer";
 import Navbar from "./components/navbar/Navbar";
+
 import "./App.css";
 
 import { AuthProvider } from "./context/AuthContext";
@@ -30,7 +31,6 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/perfil" element={<Perfil />} />
               <Route path="/about" element={<About />} />
               <Route path="/carrinho" element={<Carrinho />} />
             </Routes>

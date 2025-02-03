@@ -4,9 +4,12 @@ import Search from "../search/Search";
 import { AuthContext } from "../../context/AuthContext";
 import { ToastAlerta } from "../../utils/ToastAlerta";
 import { useNavigate } from "react-router-dom";
+import ModalPerfil from "../../pages/modalperfil/ModalPerfil";
+import Perfil from "../../pages/perfil/Perfil";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -68,9 +71,12 @@ function Navbar() {
                 ? (component = (
                     <>
                       <a
-                        href="#"
+                        onClick={() => setOpen(true)}
                         className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
                       >
+                        <ModalPerfil open={open} onClose={() => setOpen(false)}>
+                          <Perfil />
+                        </ModalPerfil>
                         Meu Perfil
                       </a>
                       <a
