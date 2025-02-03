@@ -1,6 +1,6 @@
 import { FaEdit, FaSignOutAlt, FaMapMarkerAlt, FaPhone, FaCreditCard, FaUserShield, FaUser, FaBoxOpen, FaTags } from "react-icons/fa";
 
-const ProfilePage = () => {
+const Perfil = () => {
   const userType = "Administrador";
 
   return (
@@ -58,4 +58,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default Perfil;
