@@ -50,12 +50,15 @@ function Navbar() {
         className="w-32"
       />
 
-      <div className="flex items-center gap-2 border rounded-full w-full md:w-1/3 lg:w-1/4 px-4 py-2 bg-gray-200">
-        <input
-          type="text"
-          placeholder="Buscar..."
-          className="bg-transparent text-black outline-none w-full"
+      <Search />
+
+      <div className="flex items-center space-x-6 pr-4">
+        <ShoppingCart
+          className="w-6 h-6 text-[#fff6cc] cursor-pointer hover:text-[#ff3c00]"
+          onClick={handleCartClick}
         />
+
+
 
         <div className="relative" ref={menuRef}>
           <button
@@ -69,58 +72,58 @@ function Navbar() {
             <div className="absolute z-30 right-0 mt-2 w-48 bg-[#fff6cc] text-[#002914] rounded-lg shadow-lg overflow-hidden animate-fade-in">
               {usuario.token !== ""
                 ? (component = (
-                    <>
-                      <a
-                        onClick={() => setOpen(true)}
-                        className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
-                      >
-                        <ModalPerfil open={open} onClose={() => setOpen(false)}>
-                          <Perfil />
-                        </ModalPerfil>
-                        Meu Perfil
-                      </a>
-                      <a
-                        href="/carrinho"
-                        className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
-                      >
-                        Meu Carrinho
-                      </a>
-                      <a
-                        href="/about"
-                        className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
-                      >
-                        Sobre
-                      </a>
-                      <hr />
-                      <button
-                        onClick={logout}
-                        className="w-full text-left px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
-                      >
-                        Sair
-                      </button>
-                    </>
-                  ))
+                  <>
+                    <a
+                      onClick={() => setOpen(true)}
+                      className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
+                    >
+                      <ModalPerfil open={open} onClose={() => setOpen(false)}>
+                        <Perfil />
+                      </ModalPerfil>
+                      Meu Perfil
+                    </a>
+                    <a
+                      href="/carrinho"
+                      className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
+                    >
+                      Meu Carrinho
+                    </a>
+                    <a
+                      href="/about"
+                      className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
+                    >
+                      Sobre
+                    </a>
+                    <hr />
+                    <button
+                      onClick={logout}
+                      className="w-full text-left px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
+                    >
+                      Sair
+                    </button>
+                  </>
+                ))
                 : (component = (
-                    <>
-                      <a
-                        href="/login"
-                        className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
-                      >
-                        Login
-                      </a>
-                      <a
-                        href="/cadastro"
-                        className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
-                      >
-                        Criar Conta
-                      </a>
-                    </>
-                  ))}
+                  <>
+                    <a
+                      href="/login"
+                      className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
+                    >
+                      Login
+                    </a>
+                    <a
+                      href="/cadastro"
+                      className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
+                    >
+                      Criar Conta
+                    </a>
+                  </>
+                ))}
             </div>
           )}
         </div>
       </div>
-    </nav>
+    </nav >
   );
 }
 
