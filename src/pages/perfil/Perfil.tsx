@@ -1,75 +1,82 @@
-import { useState } from "react";
+import {
+  FaEdit,
+  FaSignOutAlt,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaCreditCard,
+  FaUserShield,
+  FaUser,
+  FaBoxOpen,
+  FaTags,
+} from "react-icons/fa";
 
-export default function DeliveryProfile() {
-  const [editing, setEditing] = useState(false);
-  const [user, setUser] = useState({
-    name: "Carlos Santos",
-    email: "carlos.delivery@email.com",
-    phone: "(11) 98765-4321",
-    address: "Av. Central, 456, São Paulo - SP",
-    photo: "https://www.patasdacasa.com.br/sites/default/files/styles/article_detail_desktop/public/inline-images/meme-gato-sorrindo.jpg.webp?itok=uzMISCk1"
-  });
-
-  const handleEdit = () => setEditing(!editing);
-  
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
+const Perfil = () => {
+  const userType = "Administrador";
 
   return (
-    <div className="flex flex-col items-center p-6">
-      <div className="w-full max-w-md p-6 shadow-lg rounded-2xl border border-gray-300 bg-white">
-        <div className="flex flex-col items-center mb-4">
-          <img src={user.photo} alt="Foto do Entregador" className="w-24 h-24 rounded-full border mb-4" />
-          <h2 className="text-xl font-semibold">Perfil</h2>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#002914] p-6">
+      <div className="bg-[#fff6cc] shadow-2xl rounded-2xl p-8 w-full max-w-md border border-gray-300">
+        <div className="flex flex-col items-center">
+          <div className="w-24 h-24 bg-gray-300 rounded-full mb-4 border-4 border-[#ff3c00]"></div>
+          <h2 className="text-2xl font-bold text-[#002914]">Nome do Usuário</h2>
+          <p className="text-[#002914]">email@exemplo.com</p>
+          <div className="mt-2 flex items-center gap-2 text-[#002914] font-semibold">
+            {userType === "Administrador" ? (
+              <FaUserShield className="text-[#ff3c00]" />
+            ) : (
+              <FaUser className="text-[#002914]" />
+            )}
+            {userType}
+          </div>
         </div>
-        <div className="flex justify-between items-center mb-4">
-          <button 
-            onClick={handleEdit} 
-            className="px-4 py-2 border rounded-lg bg-gray-200 hover:bg-gray-300 transition">
-            {editing ? "Salvar" : "Editar"}
+
+        <div className="mt-6 w-full">
+          <h3 className="text-lg font-semibold text-[#002914] mb-3">
+            Informações
+          </h3>
+          <div className="space-y-3 bg-[#fff6cc] p-4 rounded-lg shadow-inner">
+            <p className="text-[#002914] flex items-center gap-2">
+              <FaMapMarkerAlt className="text-[#ff3c00]" />{" "}
+              <strong>Endereço:</strong> Rua Exemplo, 123
+            </p>
+            <p className="text-[#002914] flex items-center gap-2">
+              <FaPhone className="text-[#ff3c00]" /> <strong>Telefone:</strong>{" "}
+              (00) 12345-6789
+            </p>
+            <p className="text-[#002914] flex items-center gap-2">
+              <FaCreditCard className="text-[#ff3c00]" />{" "}
+              <strong>Método de Pagamento:</strong> Cartão de Crédito
+            </p>
+          </div>
+        </div>
+
+        {userType === "Administrador" && (
+          <div className="mt-6 w-full">
+            <h3 className="text-lg font-semibold text-[#002914] mb-3">
+              Administração
+            </h3>
+            <div className="space-y-3 bg-[#fff6cc] p-4 rounded-lg shadow-inner">
+              <button className="flex items-center gap-2 bg-[#004d30] text-white px-4 py-2 rounded-lg shadow-lg hover:bg-[#003822] transition-all w-full">
+                <FaBoxOpen /> Gerenciar Produtos
+              </button>
+              <button className="flex items-center gap-2 bg-[#004d30] text-white px-4 py-2 rounded-lg shadow-lg hover:bg-[#003822] transition-all w-full">
+                <FaTags /> Gerenciar Categorias
+              </button>
+            </div>
+          </div>
+        )}
+
+        <div className="mt-6 flex justify-between w-full">
+          <button className="flex items-center gap-2 bg-[#ff3c00] text-white px-4 py-2 rounded-lg shadow-lg hover:bg-[#cc3200] transition-all">
+            <FaEdit /> Editar Perfil
           </button>
-        </div>
-        <div className="space-y-4">
-          <input
-            type="text"
-            name="name"
-            value={user.name}
-            onChange={handleChange}
-            disabled={!editing}
-            placeholder="Nome"
-            className="w-full p-2 border rounded-lg"
-          />
-          <input
-            type="email"
-            name="email"
-            value={user.email}
-            onChange={handleChange}
-            disabled={!editing}
-            placeholder="Email"
-            className="w-full p-2 border rounded-lg"
-          />
-          <input
-            type="tel"
-            name="phone"
-            value={user.phone}
-            onChange={handleChange}
-            disabled={!editing}
-            placeholder="Telefone"
-            className="w-full p-2 border rounded-lg"
-          />
-          <input
-            type="text"
-            name="address"
-            value={user.address}
-            onChange={handleChange}
-            disabled={!editing}
-            placeholder="Endereço"
-            className="w-full p-2 border rounded-lg"
-            
-          />
+          <button className="flex items-center gap-2 bg-[#ff3c00] text-white px-4 py-2 rounded-lg shadow-lg hover:bg-[#cc3200] transition-all">
+            <FaSignOutAlt /> Sair
+          </button>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Perfil;
