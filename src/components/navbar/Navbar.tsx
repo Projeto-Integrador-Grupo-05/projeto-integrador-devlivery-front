@@ -85,6 +85,12 @@ function Navbar() {
                       >
                         Meu Carrinho
                       </a>
+                      <a
+                        href="/about"
+                        className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
+                      >
+                        Sobre
+                      </a>
                       <hr />
                       <button
                         onClick={logout}
