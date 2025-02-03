@@ -3,7 +3,7 @@ import { FacebookLogo, InstagramLogo, YoutubeLogo, XLogo } from "@phosphor-icons
 
 function Footer() {
   return (
-    <footer className="bg-[#002914] text-[#fff6cc] py-8 mt-auto">
+    <footer className="bg-gray-900 text-[#fff6cc] py-8 mt-auto">
       <div className="container mx-auto flex flex-col items-center px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-y-8 gap-x-6 w-full max-w-6xl text-center md:text-left">
           

@@ -1,4 +1,6 @@
-﻿import React, { useState } from "react";
+﻿
+
+import React, { useState } from "react";
 
 import leite from "../../assets/image/leite.png";
 import whisky from "../../assets/image/whisky.png";
@@ -21,8 +23,11 @@ import frete from "../../assets/image/frete.png";
 import golpe from "../../assets/image/golpe.png";
 import banner1 from "../../assets/image/banner1.png"; // Novo banner 1
 import banner2 from "../../assets/image/banner2.png"; // Novo banner 2
+import { FaCog, FaBox, FaList } from 'react-icons/fa';
+
 
 import './Home.css';
+
 
 const ImageList = [
   { id: 1, img: moça },
@@ -45,7 +50,6 @@ const ServicesData = [
 const Hero = () => {
   const [imageId, setImageId] = useState(moça);
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const [currentBanner, setCurrentBanner] = useState(0);
   const banners = [frete, banner1, banner2];
 
@@ -71,13 +75,13 @@ const Hero = () => {
       id: 1,
       nome: 'Hortifrut',
       imagem: "/src/assets/image/horti.png",
-      
+
       produtos: [
         { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
         { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
         { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        
-        
+
+
       ]
     },
     {
@@ -132,7 +136,7 @@ const Hero = () => {
     },
     // Adicione outras categorias conforme necessário
   ];
-  
+
 
   return (
     <>
@@ -155,16 +159,11 @@ const Hero = () => {
                 <br />
                 <span className="text-orange-600">Devlivery</span>
               </h1>
-              <p className="text-sm text-justify">
-                Receba tudo o que você precisa do seu mercado favorito no
-                conforto da sua casa! Nosso serviço de delivery oferece
-                praticidade e conveniência com uma vasta variedade de produtos
-                frescos, itens de supermercado e muito mais. Faça seu pedido
-                online e entregue diretamente para você, com rapidez e
-                segurança. Tudo o que você precisa, sem sair de casa!
+              <p className="text-2xl text-justify">
+              Receba tudo do seu mercado favorito em casa, com rapidez, segurança e praticidade!
               </p>
               <div className="text-left">
-                <button className="bg-black font-bold bg-gradient-to-r from-primary to-secondary hover:bg-gray-300 hover:scale-105 duration-200 py-2 px-4 rounded-full shadow-lg hover:shadow-xl text-orange-500">
+                <button className="button-style bg-black font-bold bg-gradient-to-r from-primary to-secondary hover:bg-gray-300 hover:scale-105 duration-200 py-2 px-4 rounded-full shadow-lg hover:shadow-xl text-orange-500">
                   <a href="/produto">Comprar agora</a>
                 </button>
               </div>
@@ -178,7 +177,7 @@ const Hero = () => {
                   data-aos-once="true"
                   src={imageId}
                   alt="Image"
-                  className="w-[300px] sm:w-[300px] sm:scale-200 mx-auto spin"
+                  className="w-[300px] sm:w-[300px] sm:scale-200 mx-auto"
                   style={{
                     marginTop: imageId === cauboi ? "20px" : "30px",
                     marginLeft: "15px",
@@ -186,130 +185,63 @@ const Hero = () => {
                   }}
                 />
               </div>
-              <div className="flex lg:flex-col lg:top-1/2 lg:-translate-y-1/2 lg:py-2 justify-center gap-4 absolute bottom-[0px] lg:-right-10 bg-white/30 rounded-full">
-                {ImageList.map((item) => (
-                  <img
-                    data-aos="zoom-in"
-                    data-aos-duration="400"
-                    data-aos-once="true"
-                    src={item.img}
-                    onClick={() => {
-                      setImageId(item.id === 1 ? moça : cauboi);
-                    }}
-                    alt=""
-                    className="max-w-[80px] h-[80px] object-contain inline-block hover:scale-105 duration-200"
-                  />
-                ))}
-              </div>
             </div>
           </div>
         </div>
       </div>
       {/** Fim do banner */}
 
-      {/** Início da categoria */} 
-{/** Início da categoria */}
-<section className="flex py-4 mt-5  pr-2 pl-4 pb-2">
-  <div className="w-full">
-    <div className="galeria flex flex-col gap-8 ml-20">
-      {categorias.map((categoria) => (
-        <div key={categoria.id} className="mb-8">
-          {/* Flex para alinhar a categoria e os produtos na mesma linha */}
-          <div className="flex items-start gap-8">
-            {/* Imagem da categoria */}
-            <figure className="flex-shrink-0">
-              <img className="w-[100px] h-[100px] object-cover" src={categoria.imagem} alt={categoria.nome} />
-            </figure>
-            {/* Nome da categoria */}
-            <figcaption className="text-green-800 font-bold text-xl flex-1">
-              {categoria.nome}
-            </figcaption>
-            
-            {/* Produtos ao lado da categoria */}
-            <div className="produtos flex flex-wrap gap-6 w-full">
-              {categoria.produtos.map((produto) => (
-                <a href={`/produto/${produto.id}`} key={produto.id} className="w-1/4">
-                  <div className="bg-white rounded-none shadow-md overflow-hidden">
-                    <img src={produto.img} className="w-full h-[280px] object-fill rounded-none" />
-                    <div className="p-4 text-center">
-                      <h3 className="font-bold">{produto.nome}</h3>
-                      <p>{produto.preco}</p>
-                    </div>
-                  </div>
-                </a>
-              ))}
-            </div>
+      {/** Categoria e produto */}
+      <div className="flex items-center justify-center bg-gray-900 text-white p-4">
+        <div className="flex items-center space-x-4">
+          <div className="flex items-center">
+          <FaList className="mr-2" />
+            <span><a href="categoria" target="_blank" rel="noopener noreferrer">Categorias</a></span>
           </div>
-        </div>
-      ))}
-    </div>
-  </div>
-  <div className="w-1/4 ml-4 border border-gray-300 pr-4 pl-4 pb-2">
-    <h2 className="text-gray-700 text-3xl text-center">Destaques do Dia 🔥</h2>
-    <br />
-    <div className="grid grid-cols-2 gap-6 w-full">
-      {ServicesData.map((service) => (
-        <a href="/produto" key={service.id}>
-          <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <img src={service.img} className="w-full h-[280px] object-fill rounded-lg" />
-          </div>
-        </a>
-      ))}
-    </div>
-  </div>
-  
-</section>
-
-
-  
-  <section>
-    {/** Seção de Destaques do Dia */}  
-  
-</section>
-{/** Fim da categoria */}
-
-
-
-      {/** Início do app */}
-      <div className="bg-orange-200 dark:bg-gray-800 py-10">
-        <div className="container">
-          <div className="grid sm:grid-cols-2 grid-cols-1 items-center gap-4">
-            <div
-              data-aos="fade-up"
-              data-aos-duration="300"
-              className="space-y-6 max-w-xl mx-auto"
-            >
-              <h1 className="text-2xl text-center sm:text-left sm:text-4xl font-semibold text-gray-700 dark:text-gray-400 ml-36">
-                Devlivery está disponível no Android e IOS
-              </h1>
-              <div className="flex flex-wrap justify-center sm:justify-start ml-36">
-                <a href="#">
-                  <img
-                    src={PlayStoreImg}
-                    alt="Play store"
-                    className="max-w-[150px] sm:max-w-[120px] md:max-w-[200px]"
-                  />
-                </a>
-                <a href="#">
-                  <img
-                    src={AppStoreImg}
-                    alt="App store"
-                    className="max-w-[150px] sm:max-w-[120px] md:max-w-[200px]"
-                  />
-                </a>
-              </div>
-            </div>
-            <div data-aos="zoom-in" data-aos-duration="300">
-              <img
-                src={Gif}
-                alt="mobile bike"
-                className="w-full sm:max-w-[60%] block rounded-md mx-auto mix-blend-multiply dark:mix-blend-difference"
-              />
-            </div>
+          <span>|</span>
+          <div className="flex items-center">
+            <FaBox className="mr-2" />
+            <span><a href="/produto" target="_blank" rel="noopener noreferrer">Produtos</a></span>
           </div>
         </div>
       </div>
-      {/** Fim do app */}
+
+      {/* Featured Products */}
+      <section className="py-12">
+        <div className="container mx-auto text-center">
+          <h2 className="text-4xl font-semibold mb-8 text-gray-700" >Produtos em Destaque</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {/* Product 1 */}
+            <div className="bg-white p-4 rounded-lg shadow-md">
+              <img src="../src/assets/image/picanha.png" alt="Picanha" className="w-full h-48 object-contain rounded-md" />
+              <h3 className="mt-4 text-xl font-semibold">Picanha Maturatta</h3>
+              <p className="mt-2 text-gray-600">R$ 50,00</p>
+              <button className="button-style mt-4 w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Adicionar ao Carrinho</button>
+            </div>
+            {/* Product 2 */}
+            <div className="bg-white p-4 rounded-lg shadow-md">
+              <img src="../src/assets/image/nutella.png" alt="nutella" className="w-full h-48 object-contain rounded-md" />
+              <h3 className="mt-4 text-xl font-semibold">Nutella</h3>
+              <p className="mt-2 text-gray-600">R$ 30,00</p>
+              <button className="button-style mt-4 w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Adicionar ao Carrinho</button>
+            </div>
+            {/* Product 3 */}
+            <div className="bg-white p-4 rounded-lg shadow-md">
+              <img src="../src/assets/image/chalise.png" alt="vinho" className="w-full h-48 object-contain rounded-md" />
+              <h3 className="mt-4 text-xl font-semibold">Vinho Chalise</h3>
+              <p className="mt-2 text-gray-600">R$ 75,00</p>
+              <button className="button-style mt-4 w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Adicionar ao Carrinho</button>
+            </div>
+            {/* Product 4 */}
+            <div className="bg-white p-4 rounded-lg shadow-md">
+              <img src="../src/assets/image/geleia.png" alt="geleia" className="w-full h-48 object-contain rounded-md" />
+              <h3 className="mt-4 text-xl font-semibold">Geleia Queensberry </h3>
+              <p className="mt-2 text-gray-600">R$ 20,00</p>
+              <button className=" button-style mt-4 w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Adicionar ao Carrinho</button>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/** Início do banner */}
       <div className="mt-14 mb-14 ml-32 mr-48 rounded-lg overflow-hidden">
@@ -322,7 +254,7 @@ const Hero = () => {
           />
           <button
             onClick={prevBanner}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
+            className="button-style absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -341,7 +273,7 @@ const Hero = () => {
           </button>
           <button
             onClick={nextBanner}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
+            className=" button-style absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -361,6 +293,72 @@ const Hero = () => {
         </div>
       </div>
       {/** Fim do banner */}
+
+      {/* Artigo sobre Azeite */}
+      <section className="bg-white py-">
+        <div className="container mx-auto text-center">
+          <h2 className="text-4xl font-semibold mb-8 text-gray-700">Azeite de Oliva Extra Virgem</h2>
+          <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
+            <div className="w-full md:w-1/2">
+              <img src="../src/assets/image/azeite.png" alt="Azeite de Oliva" className="w-full h-auto rounded-lg shadow-lg" />
+            </div>
+            <div className="w-full md:w-1/2 text-left">
+              <p className="text-lg text-gray-700 mb-4 mt-0">
+                O azeite de oliva extra virgem é uma das opções mais saudáveis para o preparo dos seus pratos. Com um sabor único e propriedades nutricionais ricas, ele se tornou um ingrediente essencial em muitas cozinhas ao redor do mundo.
+              </p>
+              <p className="text-lg text-gray-700 mb-4">
+                Nosso azeite é extraído de azeitonas frescas, garantindo um produto de alta qualidade e sabor incomparável. Ideal para saladas, molhos e até para dar aquele toque especial ao seu prato favorito.
+              </p>
+              <button className="button-style mt-4 px-6 py-3 bg-blue-600 text-orange-500 rounded-md hover:bg-blue-700 ">Comprar Azeite</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+      {/** Início do app */}
+      <div className="bg-white dark:bg-gray-800 py-">
+        <div className="container ">
+          <div className="grid sm:grid-cols-2 grid-cols-1 items-center gap-20 ml-14">
+            <div
+              data-aos="fade-up"
+              data-aos-duration="300"
+              className="space-y-6 max-w-xl mx-auto"
+            >
+              <h1 className="text-2xl text-center sm:text-left sm:text-4xl font-semibold text-gray-700 dark:text-gray-400 ml-36">
+                Devlivery está disponível no Android e IOS
+              </h1>
+              <div className="flex flex-wrap justify-center sm:justify-start ml-36">
+                <a href="#">
+                  <img
+                    src={PlayStoreImg}
+                    alt="Play store"
+                    className="max-w-[120px] sm:max-w-[100px] md:max-w-[150px]"
+                  />
+                </a>
+                <a href="#">
+                  <img
+                    src={AppStoreImg}
+                    alt="App store"
+                    className="max-w-[120px] sm:max-w-[100px] md:max-w-[150px]"
+                  />
+                </a>
+              </div>
+            </div>
+            <div data-aos="zoom-in" data-aos-duration="300">
+              <img
+                src={Gif}
+                alt="mobile bike"
+                className="w-full sm:max-w-[60%] block rounded-md mx-auto mix-blend-multiply dark:mix-blend-difference"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      {/** Fim do app */}
+
     </>
   );
 };
