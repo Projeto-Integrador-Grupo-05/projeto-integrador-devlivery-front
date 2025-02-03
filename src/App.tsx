@@ -1,12 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";  
 import { store } from "./redux/Store"; 
-
 import "./App.css";
 import Footer from "./components/footer/Footer";
 import Navbar from "./components/navbar/Navbar";
-import "./App.css";
-
 import { AuthProvider } from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import Home from "./pages/home/Home";
@@ -15,6 +12,7 @@ import Cadastro from "./pages/cadastro/Cadastro";
 import Perfil from "./pages/perfil/Perfil";
 import "react-toastify/dist/ReactToastify.css";
 import About from "./pages/about/About";
+import ListaProdutos from "./components/produtos/listaprodutos/ListaProdutos";
 import Carrinho from "./pages/carrinho/Carrinho";
 import ListaCategoria from "./components/categoria/listacategoria/ListaCategoria";
 import FormCategoria from "./components/categoria/formcategoria/FormCategoria";
@@ -33,8 +31,8 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/perfil" element={<Perfil />} />
               <Route path="/about" element={<About />} />
+              <Route path="/produtos" element={<ListaProdutos />} />
               <Route path="/carrinho" element={<Carrinho />} />
               <Route path="/categoria" element={<ListaCategoria />} />
               <Route path="/cadastrarcategoria" element={<FormCategoria />} />
