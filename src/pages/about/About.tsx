@@ -1,301 +1,297 @@
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { useState } from "react";
-import { QRCodeCanvas } from "qrcode.react"; // Importação do QRCode
-import Slider from "react-slick"; // Certifique-se de importar o Slider
-import "./About.css"; // Se estiver no mesmo diretório, ou ajuste o caminho conforme necessário
+import { motion, useInView } from "framer-motion";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { useRef } from "react";
 
-// Definindo o tipo para o colaborador
-interface Colaborador {
-  nome: string;
-  foto: string;
-  cargo: string;
-  bio: string;
-  qrcodeData: string;
+const faqItems = [
+  {
+    question: "Como funciona o site DevLivery?",
+    answer:
+      "Nosso site permite que você faça pedidos online de forma rápida e segura.",
+  },
+  {
+    question: "Quais formas de pagamento são aceitas?",
+    answer: "Aceitamos cartões de crédito, débito e pagamento via Pix.",
+  },
+  {
+    question: "Como posso realizar meu pedido?",
+    answer:
+      "Basta navegar pelas categorias, selecionar os produtos desejados e adicionar ao carrinho. Em seguida, você poderá finalizar sua compra com as opções de pagamento disponíveis.",
+  },
+  {
+    question: "O site faz entregas em todo o Brasil?",
+    answer:
+      "Sim, fazemos entregas para todo o território nacional, com prazos variados dependendo da sua localização.",
+  },
+  {
+    question: "E se o produto estiver com defeito ou não for o que eu pedi?",
+    answer:
+      "Caso receba um produto com defeito ou incorreto, entre em contato com o nosso suporte para iniciar o processo de troca ou devolução, de acordo com nossa política de devoluções.",
+  },
+  {
+    question: "Há algum custo de frete?",
+    answer:
+      "O custo do frete depende do seu local de entrega e do valor total da sua compra. Oferecemos promoções e frete grátis em compras acima de determinado valor.",
+  },
+];
+
+interface Card {
+  title: string;
+  image: string;
+  photo: string;
+  name: string;
+  description: string;
+  github: string;
+  linkedin: string;
+  qrcode: string;
 }
 
-// Configuração do carrossel
-const settings = {
-  dots: true, // Exibe os pontos de navegação
-  infinite: true, // Permite rolagem infinita
-  speed: 500,
-  slidesToShow: 3, // Número de itens visíveis
-  slidesToScroll: 1, // Número de itens para rolar
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 2,
-      },
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 1,
-      },
-    },
-  ],
-};
+const cards = [
+  {
+    title: "André Lins",
+    image: "https://i.imgur.com/VSN5Rq6.jpeg",
+    photo: "https://i.imgur.com/VSN5Rq6.jpeg",
+    name: "André Lins",
+    description: "Eu sou uma pessoa analítica e muito focada, tenho objetivos bem definidos e trabalho diariamente neles. Possuo conhecimento sólido em Java e estou mergulhando no aprendizado do Framework Spring. Adquiri diversas certificações pela Alura em Java, APIs REST com Spring Boot, e MySQL. Já atuei como estagiário no Itaú Unibanco, onde pude desenvolver fortes habilidades comportamentais e habilidades técnicas, criando automações em VBA, Automation Anywhere e JavaScript, poupando 200 horas mensais na operação.",
+    github: "https://github.com/andrelins07",
+    linkedin: "https://www.linkedin.com/in/andrelins07/",
+    qrcode: "https://qr.io/qr-svg/FEYrPH.svg?1738595845202",
+  },
+  {
+    title: "Emerson Marques",
+    image: "https://i.imgur.com/CA4t1Rq.jpeg",
+    photo: "https://i.imgur.com/CA4t1Rq.jpeg",
+    name: "Emerson Marques",
+    description: "Desenvolvedor front-end com dois anos de experiência, atualmente aprimorando habilidades em Java Full Stack pelo bootcamp da Generation. Tenho conhecimentos em JavaScript, React, Java e foco em soluções práticas e colaborativas.",
+    github: "https://github.com/ninguemzin",
+    linkedin: "https://www.linkedin.com/in/emersonalm/",
+    qrcode: "https://qr.io/qr-svg/i5PS4F.svg?1738596329496",
+  },
+  {
+    title: "Naiara Costa",
+    image: "https://i.imgur.com/zaWKrGm.png",
+    photo: "https://i.imgur.com/zaWKrGm.png",
+    name: "Naiara Costa",
+    description: "Sou estudante de Análise e Desenvolvimento de Sistemas pelo Senac e participante do bootcamp da Generation, onde desenvolvo habilidades em desenvolvimento full-stack, metodologias ágeis e soft skills voltadas ao mercado de tecnologia. Minha experiência anterior como Agente de Organização Escolar fortaleceu minha capacidade de organização, responsabilidade e trabalho em equipe, competências que aplico no dia a dia.",
+    github: "https://github.com/devnaiara",
+    linkedin: "https://www.linkedin.com/in/naiara-paula-costa/",
+    qrcode: "https://qr.io/qr-svg/SGEtMV.svg?1738596453133",
+  },
+  {
+    title: "Nayara Renata",
+    image: "https://i.imgur.com/wiNbtZi.jpeg",
+    photo: "https://i.imgur.com/wiNbtZi.jpeg",
+    name: "Nayara Renata",
+    description: "Desenvolvedor Full Stack, com experiência em Java, Spring, MySQL, HTML, CSS, JavaScript, TypeScript e React. Iniciei minha carreira em tecnologia como Analista Técnica na área financeira de uma Big Four, onde trabalhei por 3 anos e meio, desenvolvendo uma sólida base analítica e técnica. Em seguida, migrei para o desenvolvimento e participei do bootcamp da Generation, que me preparou para atuar como Full Stack Java. ",
+    github: "https://github.com/NayRenata",
+    linkedin: "https://www.linkedin.com/in/nayara-renata-costa-882949125/",
+    qrcode: "https://qr.io/qr-svg/2Rgcjt.svg?1738594929818",
+  },
+  {
+    title: "Rafael Aparecido",
+    image: "https://i.imgur.com/mKCWpWo.jpeg",
+    photo: "https://i.imgur.com/mKCWpWo.jpeg",
+    name: "Rafael Aparecido",
+    description: "Sou um profissional dedicado e em constante evolução, com experiência em atendimento ao cliente. Atuei como Operador de Telemarketing no Grupo AKRK, onde desenvolvi competências em comunicação, negociação e resolução de problemas ao oferecer soluções financeiras personalizadas, como empréstimos consignados. Atualmente, estou aprofundando meus estudos no bootcamp de Desenvolvimento Java pela Generation Brazil, onde aprendo a criar soluções tecnológicas completas utilizando HTML, CSS, Java e o framework Spring.",
+    github: "https://github.com/Rafassz",
+    linkedin: "https://www.linkedin.com/in/rafael-aparecido-macedo/",
+    qrcode: "https://qr.io/qr-svg/UFZouN.svg?1738596144296",
+  },
+  {
+    title: "Thayná Santos",
+    image: "https://i.imgur.com/Sac5egN.jpeg",
+    photo: "https://i.imgur.com/Sac5egN.jpeg",
+    name: "Thayná Santos",
+    description: "Desenvolvedora Full Stack | Estudante da 78ª turma da Generation Brasil e atualmente cursando o 1º semestre do curso técnico em Desenvolvimento de Sistemas na Etec Juscelino Kubitschek de Oliveira. Apaixonada por tecnologia e inovação, com experiência em Java, Spring, MySQL, JavaScript e React, integrando backend e frontend para desenvolver aplicações completas e funcionais. Sempre em busca de novos desafios para aprimorar minhas habilidades e contribuir com projetos que gerem impacto positivo.",
+    github: "https://github.com/thaynasimoes",
+    linkedin: "https://www.linkedin.com/in/thaynapsimoes/",
+    qrcode: "https://qr.io/qr-svg/COgK91.svg?1738595594250",
+  },
+  {
+    title: "Vinicius Aquino",
+    image: "https://i.imgur.com/JbaFqSf.jpeg",
+    photo: "https://i.imgur.com/JbaFqSf.jpeg",
+    name: "Vinicius Aquino",
+    description: "Conhecimentos técnicos: Java, Spring, HTML + CSS + JS, Angular, React, SQL Server e MySQL. Atualmente, minha rotina divide-se em aprimorar minhas habilidades nas stacks Front-End e Back-End, buscando aprofundar meus conhecimentos em conceitos fundamentais da área. Além disso, estou dedicando tempo para explorar aplicações práticas desses conhecimentos através de projetos pessoais e colaborativos, visando não apenas fortalecer minha base teórica, mas também desenvolver minha capacidade de resolver problemas de forma eficiente e criativa.",
+    github: "https://github.com/viniaquino",
+    linkedin: "https://www.linkedin.com/in/vini-aquino/",
+    qrcode: "https://qr.io/qr-svg/Q2Xj71.svg?1738595479376",
+  },
+];
 
-function Sobre() {
-  const [selectedColaborador, setSelectedColaborador] =
-    useState<Colaborador | null>(null);
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null); // Estado para armazenar a pergunta aberta
+export default function About() {
+  const [selectedCard, setSelectedCard] = useState<Card | null>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  // Dados dos colaboradores
-  const colaboradores: Colaborador[] = [
-    {
-      nome: "Andre Lins",
-      foto: "/src/image/Andre.png",
-      cargo: "Developer",
-      bio: "Apaixonado por JavaScript, Andre é um desenvolvedor experiente na DEVFIT desde 2018. Ele adora criar soluções inovadoras e melhorar a experiência dos usuários. Seu foco é sempre em código limpo e eficiente, buscando constantemente o aprendizado e a evolução como profissional.",
-      qrcodeData:
-        "https://github.com/Projeto-Integrador-Grupo-05/projeto-integrador-devfit-front",
-    },
-    {
-      nome: "Emerson Marques",
-      foto: "/src/image/Emerson.png",
-      cargo: "Developer",
-      bio: "Emerson é um desenvolvedor dedicado com um olhar atento às melhores práticas de programação. Com uma sólida experiência em JavaScript, ele contribui ativamente para o crescimento da DEVFIT, sempre buscando soluções que unam funcionalidade e performance para o usuário final.",
-      qrcodeData:
-        "https://github.com/Projeto-Integrador-Grupo-05/projeto-integrador-devfit-front",
-    },
-    {
-      nome: "Naiara Costa",
-      foto: "/src/image/Naiara.png",
-      cargo: "Developer",
-      bio: "Com uma paixão por programação, Naiara traz sua expertise em JavaScript para a DEVFIT desde 2018. Ela está sempre em busca de novos desafios e adora trabalhar em equipe para entregar soluções criativas que atendam às necessidades dos usuários de forma eficaz e inteligente.",
-      qrcodeData:
-        "https://github.com/Projeto-Integrador-Grupo-05/projeto-integrador-devfit-front",
-    },
-    {
-      nome: "Nayara Paula",
-      foto: "/src/image/Nayara.png",
-      cargo: "Developer",
-      bio: "Nayara é uma desenvolvedora inovadora que adora resolver problemas complexos. Ela se dedica ao desenvolvimento de soluções tecnológicas que impactam positivamente os usuários, sempre se atualizando nas últimas tendências de programação e aprimorando suas habilidades na DEVFIT.",
-      qrcodeData:
-        "https://github.com/Projeto-Integrador-Grupo-05/projeto-integrador-devfit-front",
-    },
-    {
-      nome: "Rafael Aparecido",
-      foto: "/src/image/Rafael.png",
-      cargo: "Developer",
-      bio: "Rafael é um desenvolvedor comprometido com a entrega de soluções robustas e escaláveis. Com foco em performance e eficiência, ele utiliza suas habilidades em programação para otimizar processos e criar sistemas que oferecem uma excelente experiência para os usuários da DEVFIT.",
-      qrcodeData:
-        "https://github.com/Projeto-Integrador-Grupo-05/projeto-integrador-devfit-front",
-    },
-    {
-      nome: "Thayná Simões",
-      foto: "/src/image/Thayna.png",
-      cargo: "Product Owner",
-      bio: "Thayna é a responsável pela visão de produto da DEVFIT. Ela trabalha para garantir que os objetivos de negócio sejam alinhados com as necessidades dos usuários. Sua habilidade em coordenar equipes e priorizar tarefas é fundamental para o sucesso dos projetos da empresa.",
-      qrcodeData:
-        "https://github.com/Projeto-Integrador-Grupo-05/projeto-integrador-devfit-front",
-    },
-    {
-      nome: "Vinicius Aquino",
-      foto: "/src/image/Vinicius.png",
-      cargo: "Tester",
-      bio: "Vinicius é o guardião da qualidade na DEVFIT. Como tester, ele dedica seu tempo a garantir que todos os sistemas e funcionalidades atendam aos mais altos padrões de qualidade. Sua atenção aos detalhes e habilidade para identificar problemas fazem dele um membro essencial da equipe.",
-      qrcodeData:
-        "https://github.com/Projeto-Integrador-Grupo-05/projeto-integrador-devfit-front",
-    },
-  ];
+  const missaoRef = useRef(null);
+  const visaoRef = useRef(null); 
+  const valoresRef = useRef(null);
+  const faqRef = useRef(null);
+  const integrantesRef = useRef(null);
 
-  // Função de clique para selecionar o colaborador
-  const handleCardClick = (colaborador: Colaborador) => {
-    setSelectedColaborador(colaborador);
-  };
-
-  // Função para alternar a visibilidade das respostas da FAQ
-  const toggleFAQ = (index: number) => {
-    setOpenFAQ(openFAQ === index ? null : index);
-  };
+  const missaoInView = useInView(missaoRef, { once: true });
+  const visaoInView = useInView(visaoRef, { once: true });
+  const valoresInView = useInView(valoresRef, { once: true });
+  const faqInView = useInView(faqRef, { once: true });
+  const integrantesInView = useInView(integrantesRef, { once: true });
 
   return (
-    <div id="forca">
-      {/* Seção do banner com a imagem "força" */}
-      <section className="força">
-        <img src="/src/image/força.png" alt="Força" className="força-img" />
-      </section>
+    <div className="flex justify-center px-4 md:px-6 min-h-screen bg-green-900">
+      <div className="space-y-10 max-w-screen-lg w-full py-10">
 
-      {/* Seção de Missão */}
-      <section className="missao">
-        <h1 className="titulo1 ">
-          Nossa missão é melhorar a saúde de nossos colaboradores
-        </h1>
-      </section>
-
-      {/* Seção de Fotos da Academia */}
-      <section className="py-12">
-        <div className="academia grid grid-cols-3 gap-6">
-          <img src="/src/image/again.png" alt="Again" />
-          <img src="/src/image/mulher.png" alt="Mulher" />
-          <img src="/src/image/disciplina.png" alt="Disciplina" />
-          <img src="/src/image/love.png" alt="Love" />
-          <img src="/src/image/consistencia.png" alt="Consistencia" />
-          <img src="/src/image/foco.png" alt="Foco" />
-        </div>
-      </section>
-      <br />
-      <br />
-
-      {/* Seção Sobre Nós */}
-      <div className="mr-60 ml-60 text-justify">
-        <section className="sobre">
-          <h2 className="sobredev">Sobre a DEVfit</h2>
-          <p className="">
-            A DEVFIT nasceu com a ideia de incentivar desenvolvedores a buscar
-            um ambiente confortável e saudável, longe das longas horas sentadas
-            em frente aos computadores. Sabemos que a vida de um desenvolvedor
-            envolve desafios constantes, como o sedentarismo, dores nas costas e
-            o cansaço mental, causados pelas longas jornadas de trabalho. Por
-            isso, nosso objetivo é criar um espaço que promova o bem-estar
-            físico e psicológico, equilibrando as demandas do desenvolvimento de
-            software com o cuidado com a saúde. Acreditamos que um corpo
-            saudável é essencial para manter a mente produtiva e criativa. Nossa
-            missão é incentivar hábitos saudáveis, como a prática regular de
-            exercícios físicos e o descanso mental, proporcionando uma rotina
-            que valoriza tanto o aprendizado técnico quanto o autocuidado.
-            Queremos ser um exemplo para outras empresas, mostrando que investir
-            no bem-estar dos colaboradores é essencial para um ambiente de
-            trabalho mais equilibrado e eficiente. Na DEVFIT, buscamos criar uma
-            cultura de saúde integrada com a tecnologia, promovendo o bem-estar
-            e o crescimento profissional de todos.
-          </p>
-          <br />
-          <hr />
-        </section>
-
-        {/* Seção de Perguntas Frequentes */}
-        <section className="faq py-12">
-          <h2 className="w-full text-left text-xl font-semibold text-indigo-600 focus:outline-none">
-            Perguntas Frequentes
-          </h2>
-          <br />
-          <div className="space-y-4">
-            {/* Pergunta 1 */}
-            <div className="border-b border-gray-300 pb-4">
-              <button
-                className="w-full text-left text-xl font-semibold text-indigo-600 focus:outline-none"
-                onClick={() => toggleFAQ(1)} // Alternar visibilidade da resposta
-              >
-                Onde fica as unidades da Devfit?
-              </button>
-              {openFAQ === 1 && (
-                <div className="text-gray-700 mt-2">
-                  A Devfit possui unidades em várias cidades. Você pode
-                  encontrar todas as informações sobre nossas unidades no nosso
-                  site ou entrar em contato com nossa equipe de suporte.
-                </div>
-              )}
+        <motion.div
+          ref={missaoRef}
+          initial={{ opacity: 0, y: 50 }}
+          animate={missaoInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="bg-green-800 p-8 rounded-lg shadow-md text-white">
+            <h2 className="text-3xl font-bold text-white mb-6 text-center">
+              Sobre{" "}
+            </h2>
+            <div className="text-center">
+              <img
+                src="https://i.imgur.com/MRujAXg.jpeg"
+                alt="Logo DevLivery"
+                className="mx-auto w-full max-w-[200px] h-auto mb-4 rounded-lg"
+              />
             </div>
-
-            {/* Pergunta 2 */}
-            <div className="border-b border-gray-300 pb-4">
-              <button
-                className="w-full text-left text-xl font-semibold text-indigo-600 focus:outline-none"
-                onClick={() => toggleFAQ(2)} // Alternar visibilidade da resposta
-              >
-                Quais são os planos disponíveis?
-              </button>
-              {openFAQ === 2 && (
-                <div className="text-gray-700 mt-2">
-                  Oferecemos planos mensais, trimestrais e anuais com diferentes
-                  benefícios. Para mais informações, consulte a seção de planos
-                  no nosso site.
-                </div>
-              )}
-            </div>
-
-            {/* Pergunta 3 */}
-            <div className="border-b border-gray-300 pb-4">
-              <button
-                className="w-full text-left text-xl font-semibold text-indigo-600 focus:outline-none"
-                onClick={() => toggleFAQ(3)} // Alternar visibilidade da resposta
-              >
-                Como posso me inscrever na Devfit?
-              </button>
-              {openFAQ === 3 && (
-                <div className="text-gray-700 mt-2">
-                  Você pode se inscrever diretamente no nosso site ou entrar em
-                  contato com a nossa equipe para mais detalhes sobre como se
-                  tornar um membro.
-                </div>
-              )}
-            </div>
+            <p className="text-lg text-justify">
+              O DevLivery é a plataforma ideal para quem busca praticidade,
+              rapidez e segurança na hora de fazer compras online. Com uma
+              interface moderna e intuitiva, oferecemos uma experiência única,
+              conectando você aos melhores produtos e serviços com apenas alguns
+              cliques. Seja para adquirir um item essencial ou aproveitar uma
+              oferta imperdível, o DevLivery é a sua melhor escolha para compras
+              online!
+            </p>
           </div>
-        </section>
+        </motion.div>
 
-        {/* Seção dos Colaboradores */}
-        <section className=" text-left">
-          <h1 className="w-full text-left text-xl font-semibold focus:outline-none">
-            Nossos Colaboradores
-          </h1>
-          <br />
-          <p className="">
-            Somos uma equipe de desenvolvedores apaixonados por criar soluções
-            que promovem saúde e bem-estar. Acreditamos que um ambiente de
-            trabalho saudável é fundamental para aumentar a produtividade e a
-            satisfação, contribuindo para o equilíbrio físico e mental.
-          </p>
-
-          {/* Carrossel dos colaboradores */}
-          <Slider {...settings}>
-            {colaboradores.map((colaborador) => (
-              <div
-                key={colaborador.nome}
-                className="flex justify-center items-center space-x-6 py-6"
-              >
-                {/* Card do colaborador */}
-                <div
-                  className="here-card relative"
-                  onClick={() => handleCardClick(colaborador)} // Evento de clique
-                  style={{
-                    border: "2px solid #e2a343",
-                    padding: "16px",
-                    borderRadius: "8px",
-                    transition: "all 0.3s ease",
-                    marginRight: "16px",
-                    marginBottom: "16px",
-                    position: "relative",
-                  }}
+        <motion.div
+          ref={faqRef}
+          initial={{ opacity: 0, y: 50 }}
+          animate={faqInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          <section className="bg-green-800 p-8 rounded-lg shadow-md text-white">
+            <h2 className="text-3xl font-bold text-white-400 mb-6 text-center">
+              Perguntas Frequentes
+            </h2>
+            {faqItems.map((faq, index) => (
+              <div key={index} className="mb-4">
+                <button
+                  className="w-full flex justify-between items-center bg-red-600 text-white p-4 rounded-lg hover:bg-red-500 transition duration-300"
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
                 >
-                  <div className="img">
-                    <img
-                      src={colaborador.foto}
-                      alt={`Foto de ${colaborador.nome}`}
-                      className="w-32 h-32 rounded-full object-cover shadow-md"
-                      style={{ borderRadius: "20%" }}
-                    />
-                  </div>
-                  <br />
-                  <div className="text">
-                    <h3>
-                      {colaborador.nome} - {colaborador.cargo}
-                    </h3>
-
-                    <p>{colaborador.bio}</p>
-                  </div>
-
-                  {/* Exibição do QR Code quando o colaborador for selecionado */}
-                  {selectedColaborador &&
-                    selectedColaborador.nome === colaborador.nome && (
-                      <div className="qrcode-overlay absolute inset-0 flex justify-center items-center bg-white bg-opacity-80 rounded-lg">
-                        <QRCodeCanvas
-                          value={colaborador.qrcodeData}
-                          size={128}
-                        />
-                      </div>
-                    )}
-                </div>
+                  <span className="text-lg">{faq.question}</span>
+                  {openFaq === index ? <FaChevronUp /> : <FaChevronDown />}
+                </button>
+                {openFaq === index && (
+                  <p className="p-4 bg-gray-800 text-gray-200 rounded-lg mt-2 text-lg">
+                    {faq.answer}
+                  </p>
+                )}
               </div>
             ))}
-          </Slider>
-        </section>
+          </section>
+        </motion.div>
+
+        <motion.div
+          ref={integrantesRef}
+          initial={{ opacity: 0, y: 50 }}
+          animate={integrantesInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 1 }}
+        >
+          <h2 className="text-3xl text-center font-bold text-white mb-6">
+            Equipe DevLivery
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {cards.map((card, index) => (
+              <motion.div
+                key={index}
+                className="relative group overflow-hidden rounded-lg shadow-lg bg-green-800 transform transition-all duration-300 hover:scale-105"
+              >
+                <div className="relative w-full h-64 overflow-hidden">
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="w-full h-full object-cover transition duration-300 group-hover:brightness-50"
+                  />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-[#FF0300]/70">
+                    <motion.button
+                      className="border border-white text-white font-semibold py-2 px-4 rounded"
+                      onClick={() => setSelectedCard(card)}
+                    >
+                      Ver Mais
+                    </motion.button>
+                  </div>
+                </div>
+                <div className="p-4 text-center">
+                  <h3 className="text-white text-xl font-bold">{card.name}</h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Modal de Integrantes */}
+        {selectedCard && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.3 }}
+              className="bg-gray-800 p-6 md:p-10 rounded-lg shadow-lg text-center w-full max-w-2xl"
+            >
+              <img
+                src={selectedCard.photo}
+                alt="Foto"
+                className="w-32 h-32 rounded-full mx-auto mb-4"
+              />
+              <h2 className="text-2xl font-bold mb-2 text-white">
+                {selectedCard.name}
+              </h2>
+              <p className="mb-4 text-justify text-gray-300">
+                {selectedCard.description}
+              </p>
+              <div className="flex justify-center gap-4">
+                <a
+                  href={selectedCard.github}
+                  target="_blank"
+                  className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600"
+                >
+                  GitHub
+                </a>
+                <a
+                  href={selectedCard.linkedin}
+                  target="_blank"
+                  className="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-500"
+                >
+                  LinkedIn
+                </a>
+              </div>
+              <img
+                src={selectedCard.qrcode}
+                alt="QR Code"
+                className="w-20 h-20 mt-4 mx-auto"
+              />
+              <button
+                className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-200"
+                onClick={() => setSelectedCard(null)}
+              >
+                Fechar
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
       </div>
     </div>
   );
 }
-
-export default Sobre;
