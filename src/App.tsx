@@ -1,8 +1,16 @@
 import Navbar from "./components/navbar/Navbar";
-import './App.css'
+import './App.css';
+import { AuthProvider } from "./context/AuthContext";
+import { ToastContainer } from "react-toastify";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Footer from "./components/footer/Footer";
+import Home from "./pages/home/Home";
+import Cadastro from "./pages/cadastro/Cadastro";
+import Login from "./pages/login/Login";
+import Perfil from "./pages/perfil/Perfil";
+import About from "./pages/about/About";
 
 function App() {
- 
   return (
     <>
       <AuthProvider>
@@ -22,7 +30,8 @@ function App() {
           <Footer />
         </BrowserRouter>
       </AuthProvider>
+    </>
   );
 }
-      
+
 export default App;
