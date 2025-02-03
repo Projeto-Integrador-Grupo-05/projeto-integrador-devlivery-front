@@ -11,6 +11,7 @@ import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 import About from "./pages/about/About";
+import ListaProdutos from "./components/produtos/listaprodutos/ListaProdutos";
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/perfil" element={<Perfil />} />
               <Route path="/about" element={<About />} />
+              <Route path="/produtos" element={<ListaProdutos />} />
+              
             </Routes>
           </div>
           <Footer />
