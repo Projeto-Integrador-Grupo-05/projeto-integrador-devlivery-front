@@ -4,7 +4,6 @@ import Search from "../search/Search";
 import { AuthContext } from "../../context/AuthContext";
 import { ToastAlerta } from "../../utils/ToastAlerta";
 import { useNavigate } from "react-router-dom";
-
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -78,6 +77,12 @@ function Navbar() {
                         className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
                       >
                         Meu Carrinho
+                      </a>
+                      <a
+                        href="/about"
+                        className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
+                      >
+                        Sobre
                       </a>
                       <hr />
                       <button
