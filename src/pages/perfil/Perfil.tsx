@@ -1,43 +1,73 @@
-import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  FaEdit,
+  FaSignOutAlt,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaCreditCard,
+  FaUserShield,
+  FaUser,
+  FaBoxOpen,
+  FaTags,
+} from "react-icons/fa";
 
-import { AuthContext } from "../../context/AuthContext";
-
-function Perfil() {
-  const navigate = useNavigate();
-
-  const { usuario } = useContext(AuthContext);
-
-  useEffect(() => {
-    if (usuario.token === "") {
-      alert("Você precisa estar logado");
-      navigate("/");
-    }
-  }, [usuario.token]);
+const Perfil = () => {
+  const userType = "Administrador";
 
   return (
-    <div className="container mx-auto m-4 rounded-2xl overflow-hidden">
-      {/* <img
-        className="w-full h-72 object-cover border-b-8 border-white"
-        src="https://i.imgur.com/ZZFAmzo.jpg"
-        alt="Capa do Perfil"
-      />
+    <div className="text-center  ">
+      <div className="flex flex-col items-center">
+        <div className="w-24 h-24 bg-gray-300 rounded-full mb-4 border-4 border-[#ff3c00]"></div>
+        <h2 className="text-2xl font-bold text-[#002914]">Nome do Usuário</h2>
+        <p className="text-[#002914]">email@exemplo.com</p>
+        <div className="mt-2 flex items-center gap-2 text-[#002914] font-semibold">
+          {userType === "Administrador" ? (
+            <FaUserShield className="text-[#ff3c00]" />
+          ) : (
+            <FaUser className="text-[#002914]" />
+          )}
+          {userType}
+        </div>
+      </div>
 
-      <img
-        className="rounded-full w-56 mx-auto mt-[-8rem] border-8 border-white relative z-10"
-        src={usuario.foto}
-        alt={`Foto de perfil de ${usuario.nome}`}
-      /> */}
+      <div className="">
+        <h3 className="text-lg font-semibold text-[#002914] ">Informações</h3>
+        <div className=" bg-[#fff6cc rounded-lg shadow-inner">
+          <p className="text-[#002914] flex items-center gap-2">
+            <FaMapMarkerAlt className="text-[#ff3c00]" />{" "}
+            <strong>Endereço:</strong> Rua Exemplo, 123
+          </p>
+          <p className="text-[#002914] flex items-center gap-2">
+            <FaPhone className="text-[#ff3c00]" /> <strong>Telefone:</strong>{" "}
+            (00) 12345-6789
+          </p>
+          <p className="text-[#002914] flex items-center gap-2">
+            <FaCreditCard className="text-[#ff3c00]" />{" "}
+            <strong>Método de Pagamento:</strong> Cartão de Crédito
+          </p>
+        </div>
+      </div>
 
-      <div
-        className="relative mt-[-6rem] h-72 flex flex-col 
-                    bg-sky-500 text-white text-2xl items-center justify-center"
-      >
-        <p>Nome: {usuario.nome} </p>
-        <p>Email: {usuario.email}</p>
+      {userType === "Administrador" && (
+        <div className=" ">
+          <h3 className=" font-semibold text-[#002914] ">Administração</h3>
+          <div className=" bg-[#fff6cc] p-1 rounded-lg shadow-inner">
+            <button className="flex items-center gap-2 bg-[#004d30] text-white px-4 py-2 rounded-lg shadow-lg hover:bg-[#003822] transition-all w-full">
+              <FaBoxOpen /> Gerenciar Produtos
+            </button>
+            <button className="flex items-center gap-2 bg-[#004d30] text-white px-4 py-2 rounded-lg shadow-lg hover:bg-[#003822] transition-all w-full">
+              <FaTags /> Gerenciar Categorias
+            </button>
+          </div>
+        </div>
+      )}
+
+      <div className=" flex justify-between w-full">
+        <button className="flex items-center gap-2 bg-[#ff3c00] text-white px-4 py-2 rounded-lg shadow-lg hover:bg-[#cc3200] transition-all">
+          <FaEdit /> Editar Perfil
+        </button>
       </div>
     </div>
   );
-}
+};
 
 export default Perfil;
