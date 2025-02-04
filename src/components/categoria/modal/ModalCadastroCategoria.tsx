@@ -1,9 +1,10 @@
-import { ChangeEvent, useContext, useState } from "react";
+import { ChangeEvent, useContext, useState, useEffect } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
 import Categoria from "../../../models/Categoria";
 import { cadastrar } from "../../../services/Service";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 interface ModalProps {
     isOpen: boolean;
@@ -17,6 +18,13 @@ function ModalCadastroCategoria({ isOpen, onClose, atualizarLista }: ModalProps)
 
     const { usuario, handleLogout } = useContext(AuthContext);
     const token = usuario.token;
+
+    // Resetando o estado quando o modal for fechado
+    useEffect(() => {
+        if (!isOpen) {
+            setCategoria({} as Categoria); // Resetando o estado do formulário
+        }
+    }, [isOpen]);
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
         setCategoria({
@@ -33,14 +41,14 @@ function ModalCadastroCategoria({ isOpen, onClose, atualizarLista }: ModalProps)
             await cadastrar(`/categoria`, Categoria, setCategoria, {
                 headers: { 'Authorization': token }
             });
-            alert('A categoria foi cadastrada com sucesso!');
-            atualizarLista(); 
-            onClose(); 
+            ToastAlerta('A categoria foi cadastrada com sucesso!', 'info');
+            atualizarLista();
+            onClose(); // Fechar o modal após o cadastro
         } catch (error: any) {
             if (error.toString().includes('403')) {
                 handleLogout();
             } else {
-                alert('Erro ao cadastrar a categoria.');
+                ToastAlerta('Erro ao cadastrar a categoria.', 'info');
             }
         }
 

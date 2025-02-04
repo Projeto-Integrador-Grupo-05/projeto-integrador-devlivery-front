@@ -8,13 +8,10 @@ import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 function FormCategoria() {
     const navigate = useNavigate();
-
-    const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
+    const [Categoria, setCategoria] = useState<Categoria>({} as Categoria);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-
     const { usuario, handleLogout } = useContext(AuthContext);
     const token = usuario.token;
-
     const { id } = useParams<{ id: string }>();
 
     async function buscarPorId(id: string) {
@@ -44,7 +41,7 @@ function FormCategoria() {
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
         setCategoria({
-            ...categoria,
+            ...Categoria,
             [e.target.name]: e.target.value
         });
     }
@@ -59,7 +56,7 @@ function FormCategoria() {
 
         if (id !== undefined) {
             try {
-                await atualizar(`/categoria`, categoria, {
+                await atualizar(`/categoria`, Categoria, setCategoria, {
                     headers: { 'Authorization': token }
                 });
                 ToastAlerta('A Categoria foi atualizada com sucesso!', 'info');
@@ -72,7 +69,7 @@ function FormCategoria() {
             }
         } else {
             try {
-                await cadastrar(`/categoria`, categoria, {
+                await cadastrar(`/categoria`, Categoria, setCategoria, {
                     headers: { 'Authorization': token }
                 });
                 ToastAlerta('A Categoria foi cadastrada com sucesso!', 'info');
@@ -90,59 +87,59 @@ function FormCategoria() {
     }
 
     return (
-        <div className="container flex flex-col items-center justify-center mx-auto">
-            <h1 className="text-4xl font-bold text-center my-8">
+        <div className="container mx-auto p-6 bg-white shadow-lg rounded-lg max-w-lg">
+            <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">
                 {id === undefined ? 'Cadastrar Categoria' : 'Editar Categoria'}
             </h1>
-
-            <form className="w-1/2 flex flex-col gap-4" onSubmit={gerarNovaCategoria}>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="descricao">Nome da Categoria</label>
+            <form className="space-y-4" onSubmit={gerarNovaCategoria}>
+                <div>
+                    <label htmlFor="nomeCategoria" className="block text-sm font-semibold text-gray-700">Nome da Categoria</label>
                     <input
                         type="text"
+                        id="nomeCategoria"
+                        name="nomeCategoria"
+                        value={Categoria.nomeCategoria}
+                        onChange={atualizarEstado}
                         placeholder="Digite o nome da categoria"
-                        name='nomeCategoria'
-                        className="border-2 border-slate-700 rounded p-2"
-                        value={categoria.nomeCategoria || ''}
-                        onChange={atualizarEstado}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                 </div>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="descricao">Link da imagem</label>
+
+                <div>
+                    <label htmlFor="descricao" className="block text-sm font-semibold text-gray-700">Link da Imagem</label>
                     <input
                         type="text"
-                        placeholder="Link da imagem da categoria"
-                        name='descricao'
-                        className="border-2 border-slate-700 rounded p-2"
-                        value={categoria.descricao || ''}
+                        id="descricao"
+                        name="descricao"
+                        value={Categoria.descricao}
                         onChange={atualizarEstado}
+                        placeholder="Link da imagem da categoria"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                 </div>
-                <div className="flex justify-around gap-4">
+
+                <div className="flex justify-center">
                     <button
-                        className="rounded text-slate-100 font-bold bg-[#002914] 
-                                   hover:bg-[#004d29] w-1/2 py-2 flex justify-center"
-                        type="submit">
-                        {isLoading ?
-                            <RotatingLines
-                                strokeColor="white"
-                                strokeWidth="5"
-                                animationDuration="0.75"
-                                width="24"
-                                visible={true}
-                            /> :
-                            <span>{id === undefined ? 'Cadastrar' : 'Atualizar'}</span>
-                        }
-                    </button>
-                    <button
-                        className="rounded text-slate-100 font-bold bg-[#ff3c00] 
-                                   hover:bg-[#cc2f00] w-1/2 py-2 flex justify-center"
-                        type="button" // Importante: type="button" para evitar submissão do formulário
-                        onClick={retornar}>
-                        Cancelar
+                        type="submit"
+                        className="w-1/2 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        disabled={isLoading}
+                    >
+                        {isLoading ? (
+                            <RotatingLines width={24} strokeColor="white" />
+                        ) : (
+                            id === undefined ? 'Cadastrar Categoria' : 'Atualizar Categoria'
+                        )}
                     </button>
                 </div>
             </form>
+            <div className="text-center mt-4">
+                <button
+                    onClick={retornar}
+                    className="text-sm text-gray-600 hover:underline"
+                >
+                    Cancelar
+                </button>
+            </div>
         </div>
     );
 }
