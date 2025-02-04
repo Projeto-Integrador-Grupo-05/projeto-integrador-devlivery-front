@@ -40,10 +40,7 @@ function FormCategoria() {
   }, [id]);
 
   function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
-    setCategoria({
-      ...categoria,
-      [e.target.name]: e.target.value,
-    });
+    setCategoria({ ...categoria, [e.target.name]: e.target.value });
   }
 
   function retornar() {

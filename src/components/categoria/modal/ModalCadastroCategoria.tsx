@@ -17,7 +17,7 @@ function ModalCadastroCategoria({
   onClose,
   atualizarLista,
 }: ModalProps) {
-  const [Categoria, setCategoria] = useState<Categoria>({} as Categoria);
+  const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { usuario, handleLogout } = useContext(AuthContext);
@@ -32,7 +32,7 @@ function ModalCadastroCategoria({
 
   function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
     setCategoria({
-      ...Categoria,
+      ...categoria,
       [e.target.name]: e.target.value,
     });
   }
@@ -42,7 +42,7 @@ function ModalCadastroCategoria({
     setIsLoading(true);
 
     try {
-      await cadastrar(`/categoria`, Categoria, setCategoria, {
+      await cadastrar(`/categoria`, categoria, setCategoria, {
         headers: { Authorization: token },
       });
       ToastAlerta("A categoria foi cadastrada com sucesso!", "info");
@@ -69,7 +69,7 @@ function ModalCadastroCategoria({
               <input
                 type="text"
                 name="nomeCategoria"
-                value={Categoria.nomeCategoria}
+                value={categoria.nomeCategoria}
                 onChange={atualizarEstado}
                 placeholder="Nome da categoria"
                 className="border p-2 w-full mb-4 rounded"
@@ -77,7 +77,7 @@ function ModalCadastroCategoria({
               <input
                 type="text"
                 name="descricao"
-                value={Categoria.descricao}
+                value={categoria.descricao}
                 onChange={atualizarEstado}
                 placeholder="Link da imagem da categoria"
                 className="border p-2 w-full mb-4 rounded"
