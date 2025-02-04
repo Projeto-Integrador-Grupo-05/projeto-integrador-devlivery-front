@@ -1,16 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    produtos: [
-      {
-        id: "",
-        nome: "",
-        preco: 0,
-        quantidade: 0,
-      },
-    ],
-  };
-  
+  produtos: [
+    {
+      id: "",
+      nome: "",
+      preco: 0,
+      quantidade: 0,
+    },
+  ],
+};
 
 export const orebiSlice = createSlice({
   name: "orebi",
@@ -18,7 +17,7 @@ export const orebiSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const produto = state.produtos.find(
-        (produto) => produto.idProduto === action.payload.idProduto
+        (produto) => produto.id === action.payload.id
       );
       if (produto) {
         produto.quantidade += action.payload.quantidade;
@@ -28,7 +27,7 @@ export const orebiSlice = createSlice({
     },
     increaseQuantity: (state, action) => {
       const produto = state.produtos.find(
-        (produto) => produto.idProduto === action.payload.idProduto
+        (produto) => produto.id === action.payload.id
       );
       if (produto) {
         produto.quantidade++;
@@ -36,7 +35,7 @@ export const orebiSlice = createSlice({
     },
     decreaseQuantity: (state, action) => {
       const produto = state.produtos.find(
-        (produto) => produto.idProduto === action.payload.idProduto
+        (produto) => produto.id === action.payload.id
       );
       if (produto && produto.quantidade > 1) {
         produto.quantidade--;
@@ -44,7 +43,7 @@ export const orebiSlice = createSlice({
     },
     deleteproduto: (state, action) => {
       state.produtos = state.produtos.filter(
-        (produto) => produto.idProduto !== action.payload
+        (produto) => produto.id !== action.payload
       );
     },
     resetCart: (state) => {
