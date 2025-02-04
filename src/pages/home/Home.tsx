@@ -11,6 +11,7 @@ import banner2 from "../../assets/image/banner2.png"; // Novo banner 2
 import { FaCog, FaBox, FaList } from "react-icons/fa";
 
 import "./Home.css";
+import { Link } from "react-router-dom";
 
 const ImageList = [{ id: 1, img: moça }];
 
@@ -63,7 +64,7 @@ const Hero = () => {
               </p>
               <div className="text-left">
                 <button className="button-style bg-black font-bold bg-gradient-to-r from-primary to-secondary hover:bg-gray-300 hover:scale-105 duration-200 py-2 px-4 rounded-full shadow-lg hover:shadow-xl text-orange-500">
-                  <a href="/produtos">Comprar agora</a>
+                  <Link to="/produtos">Comprar agora</Link>
                 </button>
               </div>
             </div>
@@ -95,18 +96,18 @@ const Hero = () => {
           <div className="flex items-center">
             <FaList className="mr-2" />
             <span>
-              <a href="categoria" rel="noopener noreferrer">
+              <Link to="categoria" rel="noopener noreferrer">
                 Categorias
-              </a>
+              </Link>
             </span>
           </div>
           <span>|</span>
           <div className="flex items-center">
             <FaBox className="mr-2" />
             <span>
-              <a href="/produtos" rel="noopener noreferrer">
+              <Link to="/produtos" rel="noopener noreferrer">
                 Produtos
-              </a>
+              </Link>
             </span>
           </div>
         </div>
@@ -273,20 +274,20 @@ const Hero = () => {
                 Devlivery está disponível no Android e IOS
               </h1>
               <div className="flex flex-wrap justify-center sm:justify-start ml-36">
-                <a href="#">
+                <Link to="#">
                   <img
                     src={PlayStoreImg}
                     alt="Play store"
                     className="max-w-[120px] sm:max-w-[100px] md:max-w-[150px]"
                   />
-                </a>
-                <a href="#">
+                </Link>
+                <Link to="#">
                   <img
                     src={AppStoreImg}
                     alt="App store"
                     className="max-w-[120px] sm:max-w-[100px] md:max-w-[150px]"
                   />
-                </a>
+                </Link>
               </div>
             </div>
             <div data-aos="zoom-in" data-aos-duration="300">

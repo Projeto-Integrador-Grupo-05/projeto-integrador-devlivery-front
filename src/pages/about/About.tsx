@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { useRef } from "react"; 
+import { useRef } from "react";
 
 const faqItems = [
   {
@@ -52,7 +52,8 @@ const cards = [
     image: "https://i.imgur.com/VSN5Rq6.jpeg",
     photo: "https://i.imgur.com/VSN5Rq6.jpeg",
     name: "André Lins",
-    description: "Eu sou uma pessoa analítica e muito focada, tenho objetivos bem definidos e trabalho diariamente neles. Possuo conhecimento sólido em Java e estou mergulhando no aprendizado do Framework Spring. Adquiri diversas certificações pela Alura em Java, APIs REST com Spring Boot, e MySQL. Já atuei como estagiário no Itaú Unibanco, onde pude desenvolver fortes habilidades comportamentais e habilidades técnicas, criando automações em VBA, Automation Anywhere e JavaScript, poupando 200 horas mensais na operação.",
+    description:
+      "Eu sou uma pessoa analítica e muito focada, tenho objetivos bem definidos e trabalho diariamente neles. Possuo conhecimento sólido em Java e estou mergulhando no aprendizado do Framework Spring. Adquiri diversas certificações pela Alura em Java, APIs REST com Spring Boot, e MySQL. Já atuei como estagiário no Itaú Unibanco, onde pude desenvolver fortes habilidades comportamentais e habilidades técnicas, criando automações em VBA, Automation Anywhere e JavaScript, poupando 200 horas mensais na operação.",
     github: "https://github.com/andrelins07",
     linkedin: "https://www.linkedin.com/in/andrelins07/",
     qrcode: "https://qr-codes-svg.s3.amazonaws.com/FEYrPH.svg?1738690145301",
@@ -62,7 +63,8 @@ const cards = [
     image: "https://i.imgur.com/CA4t1Rq.jpeg",
     photo: "https://i.imgur.com/CA4t1Rq.jpeg",
     name: "Emerson Marques",
-    description: "Desenvolvedor front-end com dois anos de experiência, atualmente aprimorando habilidades em Java Full Stack pelo bootcamp da Generation. Tenho conhecimentos em JavaScript, React, Java e foco em soluções práticas e colaborativas.",
+    description:
+      "Desenvolvedor front-end com dois anos de experiência, atualmente aprimorando habilidades em Java Full Stack pelo bootcamp da Generation. Tenho conhecimentos em JavaScript, React, Java e foco em soluções práticas e colaborativas.",
     github: "https://github.com/ninguemzin",
     linkedin: "https://www.linkedin.com/in/emersonalm/",
     qrcode: "https://qr-codes-svg.s3.amazonaws.com/i5PS4F.svg?1738690145301",
@@ -72,7 +74,8 @@ const cards = [
     image: "https://i.imgur.com/zaWKrGm.png",
     photo: "https://i.imgur.com/zaWKrGm.png",
     name: "Naiara Costa",
-    description: "Sou estudante de Análise e Desenvolvimento de Sistemas pelo Senac e participante do bootcamp da Generation, onde desenvolvo habilidades em desenvolvimento full-stack, metodologias ágeis e soft skills voltadas ao mercado de tecnologia. Minha experiência anterior como Agente de Organização Escolar fortaleceu minha capacidade de organização, responsabilidade e trabalho em equipe, competências que aplico no dia a dia.",
+    description:
+      "Sou estudante de Análise e Desenvolvimento de Sistemas pelo Senac e participante do bootcamp da Generation, onde desenvolvo habilidades em desenvolvimento full-stack, metodologias ágeis e soft skills voltadas ao mercado de tecnologia. Minha experiência anterior como Agente de Organização Escolar fortaleceu minha capacidade de organização, responsabilidade e trabalho em equipe, competências que aplico no dia Link dia.",
     github: "https://github.com/devnaiara",
     linkedin: "https://www.linkedin.com/in/naiara-paula-costa/",
     qrcode: "https://qr-codes-svg.s3.amazonaws.com/SGEtMV.svg?1738690145301",
@@ -82,7 +85,8 @@ const cards = [
     image: "https://i.imgur.com/wiNbtZi.jpeg",
     photo: "https://i.imgur.com/wiNbtZi.jpeg",
     name: "Nayara Renata",
-    description: "Desenvolvedor Full Stack, com experiência em Java, Spring, MySQL, HTML, CSS, JavaScript, TypeScript e React. Iniciei minha carreira em tecnologia como Analista Técnica na área financeira de uma Big Four, onde trabalhei por 3 anos e meio, desenvolvendo uma sólida base analítica e técnica. Em seguida, migrei para o desenvolvimento e participei do bootcamp da Generation, que me preparou para atuar como Full Stack Java. ",
+    description:
+      "Desenvolvedor Full Stack, com experiência em Java, Spring, MySQL, HTML, CSS, JavaScript, TypeScript e React. Iniciei minha carreira em tecnologia como Analista Técnica na área financeira de uma Big Four, onde trabalhei por 3 anos e meio, desenvolvendo uma sólida base analítica e técnica. Em seguida, migrei para o desenvolvimento e participei do bootcamp da Generation, que me preparou para atuar como Full Stack Java. ",
     github: "https://github.com/NayRenata",
     linkedin: "https://www.linkedin.com/in/nayara-renata-costa-882949125/",
     qrcode: "https://qr-codes-svg.s3.amazonaws.com/2Rgcjt.svg?1738690145301",
@@ -92,7 +96,8 @@ const cards = [
     image: "https://i.imgur.com/mKCWpWo.jpeg",
     photo: "https://i.imgur.com/mKCWpWo.jpeg",
     name: "Rafael Aparecido",
-    description: "Sou um profissional dedicado e em constante evolução, com experiência em atendimento ao cliente. Atuei como Operador de Telemarketing no Grupo AKRK, onde desenvolvi competências em comunicação, negociação e resolução de problemas ao oferecer soluções financeiras personalizadas, como empréstimos consignados. Atualmente, estou aprofundando meus estudos no bootcamp de Desenvolvimento Java pela Generation Brazil, onde aprendo a criar soluções tecnológicas completas utilizando HTML, CSS, Java e o framework Spring.",
+    description:
+      "Sou um profissional dedicado e em constante evolução, com experiência em atendimento ao cliente. Atuei como Operador de Telemarketing no Grupo AKRK, onde desenvolvi competências em comunicação, negociação e resolução de problemas ao oferecer soluções financeiras personalizadas, como empréstimos consignados. Atualmente, estou aprofundando meus estudos no bootcamp de Desenvolvimento Java pela Generation Brazil, onde aprendo Link criar soluções tecnológicas completas utilizando HTML, CSS, Java e o framework Spring.",
     github: "https://github.com/Rafassz",
     linkedin: "https://www.linkedin.com/in/rafael-aparecido-macedo/",
     qrcode: "https://qr-codes-svg.s3.amazonaws.com/UFZouN.svg?1738690145301",
@@ -102,7 +107,8 @@ const cards = [
     image: "https://i.imgur.com/Sac5egN.jpeg",
     photo: "https://i.imgur.com/Sac5egN.jpeg",
     name: "Thayná Santos",
-    description: "Desenvolvedora Full Stack | Estudante da 78ª turma da Generation Brasil e atualmente cursando o 1º semestre do curso técnico em Desenvolvimento de Sistemas na Etec Juscelino Kubitschek de Oliveira. Apaixonada por tecnologia e inovação, com experiência em Java, Spring, MySQL, JavaScript e React, integrando backend e frontend para desenvolver aplicações completas e funcionais. Sempre em busca de novos desafios para aprimorar minhas habilidades e contribuir com projetos que gerem impacto positivo.",
+    description:
+      "Desenvolvedora Full Stack | Estudante da 78ª turma da Generation Brasil e atualmente cursando o 1º semestre do curso técnico em Desenvolvimento de Sistemas na Etec Juscelino Kubitschek de Oliveira. Apaixonada por tecnologia e inovação, com experiência em Java, Spring, MySQL, JavaScript e React, integrando backend e frontend para desenvolver aplicações completas e funcionais. Sempre em busca de novos desafios para aprimorar minhas habilidades e contribuir com projetos que gerem impacto positivo.",
     github: "https://github.com/thaynasimoes",
     linkedin: "https://www.linkedin.com/in/thaynapsimoes/",
     qrcode: "https://qr-codes-svg.s3.amazonaws.com/COgK91.svg?1738690145301",
@@ -112,7 +118,8 @@ const cards = [
     image: "https://i.imgur.com/JbaFqSf.jpeg",
     photo: "https://i.imgur.com/JbaFqSf.jpeg",
     name: "Vinicius Aquino",
-    description: "Conhecimentos técnicos: Java, Spring, HTML + CSS + JS, Angular, React, SQL Server e MySQL. Atualmente, minha rotina divide-se em aprimorar minhas habilidades nas stacks Front-End e Back-End, buscando aprofundar meus conhecimentos em conceitos fundamentais da área. Além disso, estou dedicando tempo para explorar aplicações práticas desses conhecimentos através de projetos pessoais e colaborativos, visando não apenas fortalecer minha base teórica, mas também desenvolver minha capacidade de resolver problemas de forma eficiente e criativa.",
+    description:
+      "Conhecimentos técnicos: Java, Spring, HTML + CSS + JS, Angular, React, SQL Server e MySQL. Atualmente, minha rotina divide-se em aprimorar minhas habilidades nas stacks Front-End e Back-End, buscando aprofundar meus conhecimentos em conceitos fundamentais da área. Além disso, estou dedicando tempo para explorar aplicações práticas desses conhecimentos através de projetos pessoais e colaborativos, visando não apenas fortalecer minha base teórica, mas também desenvolver minha capacidade de resolver problemas de forma eficiente e criativa.",
     github: "https://github.com/viniaquino",
     linkedin: "https://www.linkedin.com/in/vini-aquino/",
     qrcode: "https://qr-codes-svg.s3.amazonaws.com/Q2Xj71.svg?1738690145301",
@@ -124,7 +131,7 @@ export default function About() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const missaoRef = useRef(null);
-  const visaoRef = useRef(null); 
+  const visaoRef = useRef(null);
   const valoresRef = useRef(null);
   const faqRef = useRef(null);
   const integrantesRef = useRef(null);
@@ -138,7 +145,6 @@ export default function About() {
   return (
     <div className="flex justify-center px-4 md:px-6 min-h-screen bg-slate-50">
       <div className="space-y-10 max-w-screen-lg w-full py-10">
-
         <motion.div
           ref={missaoRef}
           initial={{ opacity: 0, y: 50 }}
@@ -157,13 +163,13 @@ export default function About() {
               />
             </div>
             <p className="text-lg text-justify">
-              O DevLivery é a plataforma ideal para quem busca praticidade,
+              O DevLivery é Link plataforma ideal para quem busca praticidade,
               rapidez e segurança na hora de fazer compras online. Com uma
               interface moderna e intuitiva, oferecemos uma experiência única,
               conectando você aos melhores produtos e serviços com apenas alguns
               cliques. Seja para adquirir um item essencial ou aproveitar uma
-              oferta imperdível, o DevLivery é a sua melhor escolha para compras
-              online!
+              oferta imperdível, o DevLivery é Link sua melhor escolha para
+              compras online!
             </p>
           </div>
         </motion.div>
@@ -262,20 +268,20 @@ export default function About() {
                 {selectedCard.description}
               </p>
               <div className="flex justify-center gap-4">
-                <a
-                  href={selectedCard.github}
+                <Link
+                  to={selectedCard.github}
                   target="_blank"
                   className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600"
                 >
                   GitHub
-                </a>
-                <a
-                  href={selectedCard.linkedin}
+                </Link>
+                <Link
+                  to={selectedCard.linkedin}
                   target="_blank"
                   className="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-500"
                 >
                   LinkedIn
-                </a>
+                </Link>
               </div>
               <img
                 src={selectedCard.qrcode}

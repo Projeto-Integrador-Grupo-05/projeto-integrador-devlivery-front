@@ -9,7 +9,7 @@ import Perfil from "../../pages/perfil/Perfil";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false); // Estado para saber se rolou a página
+  const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -25,10 +25,10 @@ function Navbar() {
     }
     document.addEventListener("mousedown", handleClickOutside);
 
-    // Função que monitora a posição do scroll
+    // Função que monitora Link posição do scroll
     const handleScroll = () => {
       if (window.scrollY > 50) {
-        setIsScrolled(true); // Se o scroll passar de 50px, a navbar ficará fixa
+        setIsScrolled(true); // Se o scroll passar de 50px, Link navbar ficará fixa
       } else {
         setIsScrolled(false);
       }
@@ -45,7 +45,7 @@ function Navbar() {
       ToastAlerta("Você precisa estar logado para acessar o carrinho!", "info");
       navigate("/login");
     } else {
-      window.location.href = "/carrinho";
+      navigate("/carrinho");
     }
   };
 
@@ -92,7 +92,7 @@ function Navbar() {
               {usuario.token !== ""
                 ? (component = (
                     <>
-                      <a
+                      <button
                         onClick={() => setOpen(true)}
                         className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
                       >
@@ -100,19 +100,19 @@ function Navbar() {
                           <Perfil />
                         </ModalPerfil>
                         Meu Perfil
-                      </a>
-                      <a
-                        href="/carrinho"
+                      </button>
+                      <Link
+                        to="/carrinho"
                         className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
                       >
                         Meu Carrinho
-                      </a>
-                      <a
-                        href="/about"
+                      </Link>
+                      <Link
+                        to="/about"
                         className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
                       >
                         Sobre
-                      </a>
+                      </Link>
                       <hr />
                       <button
                         onClick={logout}
@@ -124,18 +124,18 @@ function Navbar() {
                   ))
                 : (component = (
                     <>
-                      <a
-                        href="/login"
+                      <Link
+                        to="/login"
                         className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
                       >
                         Login
-                      </a>
-                      <a
-                        href="/cadastro"
+                      </Link>
+                      <Link
+                        to="/cadastro"
                         className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
                       >
                         Criar Conta
-                      </a>
+                      </Link>
                     </>
                   ))}
             </div>
