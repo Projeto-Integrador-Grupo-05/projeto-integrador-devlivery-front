@@ -91,15 +91,15 @@ function Navbar() {
               {usuario.token !== ""
                 ? (component = (
                     <>
-                      <button
+                      <ModalPerfil open={open} onClose={() => setOpen(false)}>
+                        <Perfil />
+                      </ModalPerfil>
+                      <a
                         onClick={() => setOpen(true)}
                         className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
                       >
-                        <ModalPerfil open={open} onClose={() => setOpen(false)}>
-                          <Perfil />
-                        </ModalPerfil>
                         Meu Perfil
-                      </button>
+                      </a>
                       <Link
                         to="/carrinho"
                         className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"

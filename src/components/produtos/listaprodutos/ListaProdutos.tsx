@@ -6,6 +6,7 @@ import { buscar } from "../../../services/Service";
 import { DNA } from "react-loader-spinner";
 import CardProduto from "../cardprodutos/CardProduto";
 import { ToastAlerta } from "../../../utils/ToastAlerta";
+import { Leaf } from "lucide-react";
 
 function ListaProdutos() {
   const navigate = useNavigate();
@@ -239,12 +240,7 @@ function ListaProdutos() {
                   onChange={handleCheckboxChange}
                 />
                 <div className="relative">
-                  <img
-                    src="src/assets/icons/leaf.svg"
-                    width="40px"
-                    alt="Ícone de uma folha"
-                    className="p-3 rounded-full bg-rose-400 invert"
-                  />
+                  <Leaf color="green" />
                 </div>
                 <p>Saudáveis</p>
               </div>

@@ -7,6 +7,7 @@ import {
   decreaseQuantity,
   deleteproduto,
 } from "../../redux/OrebiSlice"; // Importe as ações corretas
+import { ShoppingCart } from "lucide-react";
 
 interface CardProdutoProps {
   produto: any;
@@ -18,7 +19,7 @@ const CardProduto = ({ produto }: CardProdutoProps) => {
   return (
     <div className="w-full grid grid-cols-5 items-center px-6 text-primeColor border-b py-4">
       <div className="flex items-center gap-4">
-        <ImCross
+        <ShoppingCart
           className="text-primeColor hover:text-red-500 duration-300 cursor-pointer"
           onClick={() => dispatch(deleteproduto(produto.idProduto))}
         />

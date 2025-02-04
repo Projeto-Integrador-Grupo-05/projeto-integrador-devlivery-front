@@ -1,3 +1,4 @@
+import { Leaf } from "lucide-react";
 import Produto from "../../../models/Produto";
 
 interface CardProdutosProps {
@@ -26,16 +27,7 @@ function CardProduto({ produto }: CardProdutosProps) {
   return (
     <div className="border border-gray-400 flex flex-col rounded-xl overflow-hidden shadow-2xl p-6 relative">
       <div className="relative">
-        {produto.saudavel ? (
-          <img
-            src="src\assets\icons\leaf.svg"
-            width="50px"
-            alt="Ícone de uma folha"
-            className="p-3 rounded-full bg-rose-400 absolute top-2 right-2 invert"
-          />
-        ) : (
-          ""
-        )}
+        {produto.saudavel ? <Leaf color="green" /> : ""}
         <div className="flex items-center justify-center">
           <img
             className="h-36 w-56 object-cover rounded-xl"
