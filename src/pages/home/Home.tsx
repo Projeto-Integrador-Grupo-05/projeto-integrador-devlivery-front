@@ -1,6 +1,4 @@
-﻿
-
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 
 import leite from "../../assets/image/leite.png";
 import whisky from "../../assets/image/whisky.png";
@@ -23,11 +21,9 @@ import frete from "../../assets/image/frete.png";
 import golpe from "../../assets/image/golpe.png";
 import banner1 from "../../assets/image/banner1.png"; // Novo banner 1
 import banner2 from "../../assets/image/banner2.png"; // Novo banner 2
-import { FaCog, FaBox, FaList } from 'react-icons/fa';
+import { FaCog, FaBox, FaList } from "react-icons/fa";
 
-
-import './Home.css';
-
+import "./Home.css";
 
 const ImageList = [
   { id: 1, img: moça },
@@ -73,70 +69,157 @@ const Hero = () => {
   const categorias = [
     {
       id: 1,
-      nome: 'Hortifrut',
+      nome: "Hortifrut",
       imagem: "/src/assets/image/horti.png",
 
       produtos: [
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-
-
-      ]
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+      ],
     },
     {
       id: 2,
-      nome: 'Churrasco',
+      nome: "Churrasco",
       imagem: "/src/assets/image/churrasco.png",
       produtos: [
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-      ]
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+      ],
     },
     {
       id: 3,
-      nome: 'Churrasco',
+      nome: "Churrasco",
       imagem: "/src/assets/image/churrasco.png",
       produtos: [
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-      ]
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+      ],
     },
     {
       id: 4,
-      nome: 'Churrasco',
+      nome: "Churrasco",
       imagem: "/src/assets/image/churrasco.png",
       produtos: [
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-      ]
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+      ],
     },
     {
       id: 5,
-      nome: 'Churrasco',
+      nome: "Churrasco",
       imagem: "/src/assets/image/churrasco.png",
       produtos: [
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-      ]
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+      ],
     },
     {
       id: 6,
-      nome: 'Churrasco',
+      nome: "Churrasco",
       imagem: "/src/assets/image/churrasco.png",
       produtos: [
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-      ]
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+        {
+          id: 1,
+          nome: "Maçã",
+          preco: "R$ 5,00",
+          img: "../src/assets/image/leite.png",
+        },
+      ],
     },
     // Adicione outras categorias conforme necessário
   ];
-
 
   return (
     <>
@@ -154,17 +237,17 @@ const Hero = () => {
               className="flex flex-col justify-center gap-4 pt-12 sm:pt-0 text-center sm:text-left order-2 sm:order-1"
             >
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-left">
-                Bem-vindo{" "}
-                ao
+                Bem-vindo ao
                 <br />
                 <span className="text-orange-600">Devlivery</span>
               </h1>
               <p className="text-2xl text-justify">
-              Receba tudo do seu mercado favorito em casa, com rapidez, segurança e praticidade!
+                Receba tudo do seu mercado favorito em casa, com rapidez,
+                segurança e praticidade!
               </p>
               <div className="text-left">
                 <button className="button-style bg-black font-bold bg-gradient-to-r from-primary to-secondary hover:bg-gray-300 hover:scale-105 duration-200 py-2 px-4 rounded-full shadow-lg hover:shadow-xl text-orange-500">
-                  <a href="/produto">Comprar agora</a>
+                  <a href="/produtos">Comprar agora</a>
                 </button>
               </div>
             </div>
@@ -195,13 +278,21 @@ const Hero = () => {
       <div className="flex items-center justify-center bg-gray-900 text-white p-4">
         <div className="flex items-center space-x-4">
           <div className="flex items-center">
-          <FaList className="mr-2" />
-            <span><a href="categoria" target="_blank" rel="noopener noreferrer">Categorias</a></span>
+            <FaList className="mr-2" />
+            <span>
+              <a href="categoria" target="_blank" rel="noopener noreferrer">
+                Categorias
+              </a>
+            </span>
           </div>
           <span>|</span>
           <div className="flex items-center">
             <FaBox className="mr-2" />
-            <span><a href="/produto" target="_blank" rel="noopener noreferrer">Produtos</a></span>
+            <span>
+              <a href="/produtos" target="_blank" rel="noopener noreferrer">
+                Produtos
+              </a>
+            </span>
           </div>
         </div>
       </div>
@@ -209,35 +300,63 @@ const Hero = () => {
       {/* Featured Products */}
       <section className="py-12">
         <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-semibold mb-8 text-gray-700" >Produtos em Destaque</h2>
+          <h2 className="text-4xl font-semibold mb-8 text-gray-700">
+            Produtos em Destaque
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {/* Product 1 */}
             <div className="bg-white p-4 rounded-lg shadow-md">
-              <img src="../src/assets/image/picanha.png" alt="Picanha" className="w-full h-48 object-contain rounded-md" />
+              <img
+                src="../src/assets/image/picanha.png"
+                alt="Picanha"
+                className="w-full h-48 object-contain rounded-md"
+              />
               <h3 className="mt-4 text-xl font-semibold">Picanha Maturatta</h3>
               <p className="mt-2 text-gray-600">R$ 50,00</p>
-              <button className="button-style mt-4 w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Adicionar ao Carrinho</button>
+              <button className="button-style mt-4 w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                Adicionar ao Carrinho
+              </button>
             </div>
             {/* Product 2 */}
             <div className="bg-white p-4 rounded-lg shadow-md">
-              <img src="../src/assets/image/nutella.png" alt="nutella" className="w-full h-48 object-contain rounded-md" />
+              <img
+                src="../src/assets/image/nutella.png"
+                alt="nutella"
+                className="w-full h-48 object-contain rounded-md"
+              />
               <h3 className="mt-4 text-xl font-semibold">Nutella</h3>
               <p className="mt-2 text-gray-600">R$ 30,00</p>
-              <button className="button-style mt-4 w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Adicionar ao Carrinho</button>
+              <button className="button-style mt-4 w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                Adicionar ao Carrinho
+              </button>
             </div>
             {/* Product 3 */}
             <div className="bg-white p-4 rounded-lg shadow-md">
-              <img src="../src/assets/image/chalise.png" alt="vinho" className="w-full h-48 object-contain rounded-md" />
+              <img
+                src="../src/assets/image/chalise.png"
+                alt="vinho"
+                className="w-full h-48 object-contain rounded-md"
+              />
               <h3 className="mt-4 text-xl font-semibold">Vinho Chalise</h3>
               <p className="mt-2 text-gray-600">R$ 75,00</p>
-              <button className="button-style mt-4 w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Adicionar ao Carrinho</button>
+              <button className="button-style mt-4 w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                Adicionar ao Carrinho
+              </button>
             </div>
             {/* Product 4 */}
             <div className="bg-white p-4 rounded-lg shadow-md">
-              <img src="../src/assets/image/geleia.png" alt="geleia" className="w-full h-48 object-contain rounded-md" />
-              <h3 className="mt-4 text-xl font-semibold">Geleia Queensberry </h3>
+              <img
+                src="../src/assets/image/geleia.png"
+                alt="geleia"
+                className="w-full h-48 object-contain rounded-md"
+              />
+              <h3 className="mt-4 text-xl font-semibold">
+                Geleia Queensberry{" "}
+              </h3>
               <p className="mt-2 text-gray-600">R$ 20,00</p>
-              <button className=" button-style mt-4 w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Adicionar ao Carrinho</button>
+              <button className=" button-style mt-4 w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                Adicionar ao Carrinho
+              </button>
             </div>
           </div>
         </div>
@@ -249,7 +368,7 @@ const Hero = () => {
           <img
             src={banners[currentBanner]}
             alt="Banner do frete"
-            style={{ height: '180px', width: '1700px' }}
+            style={{ height: "180px", width: "1700px" }}
             className="w-full h-auto"
           />
           <button
@@ -297,26 +416,37 @@ const Hero = () => {
       {/* Artigo sobre Azeite */}
       <section className="bg-white py-">
         <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-semibold mb-8 text-gray-700">Azeite de Oliva Extra Virgem</h2>
+          <h2 className="text-4xl font-semibold mb-8 text-gray-700">
+            Azeite de Oliva Extra Virgem
+          </h2>
           <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
             <div className="w-full md:w-1/2">
-              <img src="../src/assets/image/azeite.png" alt="Azeite de Oliva" className="w-full h-auto rounded-lg shadow-lg" />
+              <img
+                src="../src/assets/image/azeite.png"
+                alt="Azeite de Oliva"
+                className="w-full h-auto rounded-lg shadow-lg"
+              />
             </div>
             <div className="w-full md:w-1/2 text-left">
               <p className="text-lg text-gray-700 mb-4 mt-0">
-                O azeite de oliva extra virgem é uma das opções mais saudáveis para o preparo dos seus pratos. Com um sabor único e propriedades nutricionais ricas, ele se tornou um ingrediente essencial em muitas cozinhas ao redor do mundo.
+                O azeite de oliva extra virgem é uma das opções mais saudáveis
+                para o preparo dos seus pratos. Com um sabor único e
+                propriedades nutricionais ricas, ele se tornou um ingrediente
+                essencial em muitas cozinhas ao redor do mundo.
               </p>
               <p className="text-lg text-gray-700 mb-4">
-                Nosso azeite é extraído de azeitonas frescas, garantindo um produto de alta qualidade e sabor incomparável. Ideal para saladas, molhos e até para dar aquele toque especial ao seu prato favorito.
+                Nosso azeite é extraído de azeitonas frescas, garantindo um
+                produto de alta qualidade e sabor incomparável. Ideal para
+                saladas, molhos e até para dar aquele toque especial ao seu
+                prato favorito.
               </p>
-              <button className="button-style mt-4 px-6 py-3 bg-blue-600 text-orange-500 rounded-md hover:bg-blue-700 ">Comprar Azeite</button>
+              <button className="button-style mt-4 px-6 py-3 bg-blue-600 text-orange-500 rounded-md hover:bg-blue-700 ">
+                Comprar Azeite
+              </button>
             </div>
           </div>
         </div>
       </section>
-
-
-
 
       {/** Início do app */}
       <div className="bg-white dark:bg-gray-800 py-">
@@ -358,7 +488,6 @@ const Hero = () => {
         </div>
       </div>
       {/** Fim do app */}
-
     </>
   );
 };
