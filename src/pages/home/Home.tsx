@@ -95,11 +95,7 @@ const Hero = () => {
           <div className="flex items-center">
             <FaList className="mr-2" />
             <span>
-<<<<<<< HEAD
               <a href="categoria" rel="noopener noreferrer">
-=======
-              <a href="categoria" target="_self" rel="noopener noreferrer">
->>>>>>> 4921e2e5fdaec7c8b5afb7578a6833c92de10543
                 Categorias
               </a>
             </span>
@@ -108,11 +104,7 @@ const Hero = () => {
           <div className="flex items-center">
             <FaBox className="mr-2" />
             <span>
-<<<<<<< HEAD
               <a href="/produtos" rel="noopener noreferrer">
-=======
-              <a href="/produtos" target="_self" rel="noopener noreferrer">
->>>>>>> 4921e2e5fdaec7c8b5afb7578a6833c92de10543
                 Produtos
               </a>
             </span>
