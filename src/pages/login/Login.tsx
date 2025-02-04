@@ -1,105 +1,110 @@
 import { Link, useNavigate } from "react-router-dom";
-import "./Login.css";
 import { AuthContext } from "../../context/AuthContext";
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import UsuarioLogin from "../../models/UsuarioLogin";
 import { RotatingLines } from "react-loader-spinner";
 
-function Login() {
-  const navigate = useNavigate();
-  const { usuario, handleLogin, isLoading } = useContext(AuthContext);
-  const [usuarioLogin, setUsuarioLogin] = useState<UsuarioLogin>(
-    {} as UsuarioLogin
-  );
 
-  useEffect(() => {
-    if (usuario && usuario.token !== "") {
-      navigate("/home");
+function NovoLogin() {
+    const navigate = useNavigate();
+    const { usuario, handleLogin, isLoading } = useContext(AuthContext);
+    const [usuarioLogin, setUsuarioLogin] = useState<UsuarioLogin>(
+        {} as UsuarioLogin
+    );
+
+    useEffect(() => {
+        if (usuario && usuario.token !== "") {
+            navigate("/home");
+        }
+    }, [usuario, navigate]);
+
+    function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+        setUsuarioLogin({
+            ...usuarioLogin,
+            [e.target.name]: e.target.value,
+        });
     }
-  }, [usuario, navigate]);
 
-  function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
-    setUsuarioLogin({
-      ...usuarioLogin,
-      [e.target.name]: e.target.value,
-    });
-  }
+    function login(e: ChangeEvent<HTMLFormElement>) {
+        e.preventDefault();
+        handleLogin(usuarioLogin);
+    }
 
-  function login(e: ChangeEvent<HTMLFormElement>) {
-    e.preventDefault();
-    handleLogin(usuarioLogin);
-  }
+    return (
+        <>
+            <div className="flex w-full h-screen bg-gray-100">
+                <div className="hidden relative lg:flex h-full w-1/2 items-center justify-center bg-gray-900">
+                    <img
+                        src="https://i.imgur.com/fBJcXWf.png"
+                        alt="LogoDevlivery"
+                    />
+                </div>
+                <div className="w-full flex flex-col items-center justify-center lg:w-1/2">
+                    <div className="bg-white px-10 py-20 rounded-3xl border-2 border-gray-200">
+                        <h1 className="text-5xl font-semibold">Bem vindo!</h1>
+                        <p className="font-medium text-lg text-gray-500 mt-4">Entre e aproveite os benefícios de ser cliente</p>
+                        <form className="mt-8"
+                            onSubmit={login}>
+                            <div>
+                                <label className="text-lg font-medium">Email</label>
+                                <input
+                                    type="text"
+                                    id="email"
+                                    name="email"
+                                    className='w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent'
+                                    placeholder="Entre com seu email"
+                                    value={usuarioLogin.email}
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                        atualizarEstado(e)
+                                    }
+                                />
+                            </div>
+                            <div>
+                                <label className="text-lg font-medium">Password</label>
+                                <input
+                                    type="password"
+                                    id="senha"
+                                    name="senha"
+                                    className='w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent'
+                                    placeholder="Entre com sua senha"
+                                    value={usuarioLogin.senha}
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                        atualizarEstado(e)
+                                    }
+                                />
+                            </div>
+                            <div className="mt-8 flex flex-col gap-y-4">
+                                <button
+                                    type="submit"
+                                    className="hover:bg-indigo-900 py-3 rounded-xl bg-gray-900
+                                        text-white text-lg flex font-bold justify-center">
 
-  return (
-    <>
-      <div
-        className="grid grid-cols-1 lg:grid-cols-2 
-                    h-screen place-items-center font-bold "
-      >
-        <form
-          className="flex justify-center items-center flex-col w-1/2 gap-4"
-          onSubmit={login}
-        >
-          <h2 className="text-slate-900 text-5xl ">Entrar</h2>
-          <div className="flex flex-col w-full">
-            <label htmlFor="email">Usuário</label>
-            <input
-              type="text"
-              id="email"
-              name="email"
-              placeholder="Usuario"
-              className="border-2 border-slate-700 rounded p-2"
-              value={usuarioLogin.email}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                atualizarEstado(e)
-              }
-            />
-          </div>
-          <div className="flex flex-col w-full">
-            <label htmlFor="senha">Senha</label>
-            <input
-              type="password"
-              id="senha"
-              name="senha"
-              placeholder="Senha"
-              className="border-2 border-slate-700 rounded p-2"
-              value={usuarioLogin.senha}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                atualizarEstado(e)
-              }
-            />
-          </div>
-          <button
-            type="submit"
-            className="rounded bg-indigo-400 flex justify-center
-                                   hover:bg-indigo-900 text-white w-1/2 py-2"
-          >
-            {isLoading ? (
-              <RotatingLines
-                strokeColor="white"
-                strokeWidth="5"
-                animationDuration="0.75"
-                width="24"
-                visible={true}
-              />
-            ) : (
-              <span>Entrar</span>
-            )}
-          </button>
+                                    {isLoading ? (
+                                        <RotatingLines
+                                            strokeColor="white"
+                                            strokeWidth="5"
+                                            animationDuration="0.75"
+                                            width="24"
+                                            visible={true}
+                                        />
+                                    ) : (
+                                        <span>Entrar</span>
+                                    )}
+                                </button>
+                            </div>
+                            <div className="mt-8 flex justify-center items-center">
+                                <p className="font-medium text-base">Não tem uma conta?</p>
+                                <Link to="/cadastro" className="text-indigo-900 text-bold font-medium ml-2">
+                                    Cadastre-se
+                                </Link>
 
-          <hr className="border-slate-800 w-full" />
-
-          <p>
-            Ainda não tem uma conta?{" "}
-            <Link to="/cadastro" className="text-indigo-800 hover:underline">
-              Cadastre-se
-            </Link>
-          </p>
-        </form>
-        <div className="fundoLogin hidden lg:block"></div>
-      </div>
-    </>
-  );
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 }
 
-export default Login;
+export default NovoLogin;
