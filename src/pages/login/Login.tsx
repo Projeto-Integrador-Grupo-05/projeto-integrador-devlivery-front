@@ -33,11 +33,17 @@ function NovoLogin() {
     return (
         <>
             <div className="flex w-full h-screen bg-gray-100">
-                <div className="hidden relative lg:flex h-full w-1/2 items-center justify-center bg-gray-900">
+                <div className="hidden relative lg:flex flex-col h-full w-1/2 items-center justify-center bg-gray-900">
                     <img
                         src="https://i.imgur.com/fBJcXWf.png"
                         alt="LogoDevlivery"
                     />
+                    <Link to='/home'
+                        type="submit"
+                        className="w-1/2 hover:bg-orange-600 hover:text-white py-3 rounded-xl bg-white
+                                        text-black text-lg flex font-bold justify-center">
+                        <span>Voltar para Home</span>
+                    </Link>
                 </div>
                 <div className="w-full flex flex-col items-center justify-center lg:w-1/2">
                     <div className="bg-white px-10 py-20 rounded-3xl border-2 border-gray-200">
