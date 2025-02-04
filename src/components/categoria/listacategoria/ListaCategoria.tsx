@@ -24,7 +24,7 @@ function ListaCategoria() {
     null
   );
   const { usuario, handleLogout } = useContext(AuthContext);
-  const token = usuario.token;
+  const token = usuario?.token || "";
 
   async function buscarCategoria() {
     try {
@@ -39,8 +39,8 @@ function ListaCategoria() {
   }
 
   useEffect(() => {
-    if (token === "") {
-      ToastAlerta("Você precisa estar logado!");
+    if (!token) {
+      ToastAlerta("Você precisa estar logado!", "erro");
       navigate("/");
     } else {
       buscarCategoria();
@@ -87,7 +87,7 @@ function ListaCategoria() {
         if (error.toString().includes("403")) {
           handleLogout();
         } else {
-          ToastAlerta("Erro ao deletar a categoria.", "info");
+          ToastAlerta("Erro ao deletar a categoria.", "erro");
         }
       }
     }
@@ -96,17 +96,17 @@ function ListaCategoria() {
 
   async function atualizarCategoria(categoria: Categoria) {
     try {
-      await atualizar(`/categoria`, categoria, {
+      await atualizar(`/categoria`, categoria, setCategorias, {
         headers: { Authorization: token },
       });
-      ToastAlerta("Categoria atualizada com sucesso!", "info");
+      ToastAlerta("Categoria atualizada com sucesso!", "sucesso");
       buscarCategoria();
       fecharEditModal();
     } catch (error: any) {
       if (error.toString().includes("403")) {
         handleLogout();
       } else {
-        ToastAlerta("Erro ao atualizar a categoria.", "info");
+        ToastAlerta("Erro ao atualizar a categoria.", "erro");
       }
     }
   }
@@ -119,7 +119,6 @@ function ListaCategoria() {
           height="200"
           width="200"
           ariaLabel="dna-loading"
-          wrapperStyle={{}}
           wrapperClass="dna-wrapper mx-auto"
         />
       )}
@@ -171,10 +170,7 @@ function ListaCategoria() {
         onClose={fecharEditModal}
         onConfirm={() => categoriaToEdit && atualizarCategoria(categoriaToEdit)}
       >
-        <FormCategoria
-          categoria={categoriaToEdit}
-          onUpdate={atualizarCategoria}
-        />
+        {categoriaToEdit && <FormCategoria />}
       </Modal>
     </>
   );

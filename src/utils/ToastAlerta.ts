@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 
-export function ToastAlerta(mensagem: string, tipo: string) {
-  switch (tipo) {
+export function ToastAlerta(mensagem: string) {
+  switch {
     case "sucesso":
       toast.success(mensagem, {
         position: "top-right",

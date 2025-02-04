@@ -37,14 +37,9 @@ export const cadastrar = async (
   setDados(resposta.data);
 };
 
-export const atualizar = async (
-  url: string,
-  dados: Object,
-  setDados: Function,
-  header: Object
-) => {
+export const atualizar = async (url: string, dados: Object, header: Object) => {
   const resposta = await api.put(url, dados, header);
-  setDados(resposta.data);
+  return resposta.data; // Retorna os dados atualizados
 };
 
 export const deletar = async (url: string, header: Object) => {
