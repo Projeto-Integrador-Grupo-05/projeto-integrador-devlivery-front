@@ -47,14 +47,15 @@ function Navbar() {
       <img
         src="https://i.imgur.com/fBJcXWf.png"
         alt="LogoDevlivery"
-        className="w-32"
+        className="w-16 ml-10"
       />
 
-      <div className="flex items-center gap-2 border rounded-full w-full md:w-1/3 lg:w-1/4 px-4 py-2 bg-gray-200">
-        <input
-          type="text"
-          placeholder="Buscar..."
-          className="bg-transparent text-black outline-none w-full"
+      <Search />
+
+      <div className="flex items-center space-x-6 pr-4">
+        <ShoppingCart
+          className="w-6 h-6 text-[#fff6cc] cursor-pointer hover:text-[#ff3c00]"
+          onClick={handleCartClick}
         />
 
         <div className="relative" ref={menuRef}>
@@ -123,5 +124,6 @@ function Navbar() {
     </nav>
   );
 }
+
 
 export default Navbar;
