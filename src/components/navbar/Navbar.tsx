@@ -25,10 +25,9 @@ function Navbar() {
     }
     document.addEventListener("mousedown", handleClickOutside);
 
-    // Função que monitora Link posição do scroll
     const handleScroll = () => {
       if (window.scrollY > 50) {
-        setIsScrolled(true); // Se o scroll passar de 50px, Link navbar ficará fixa
+        setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }

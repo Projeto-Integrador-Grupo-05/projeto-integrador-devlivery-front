@@ -112,7 +112,7 @@ function FormProduto() {
         if (error.toString().includes("403")) {
           handleLogout();
         } else {
-          alert("Erro ao atualizar Link Produto");
+          alert("Erro ao atualizar a Produto");
         }
       }
     } else {
@@ -128,7 +128,7 @@ function FormProduto() {
         if (error.toString().includes("403")) {
           handleLogout();
         } else {
-          alert("Erro ao cadastrar Link Produto");
+          alert("Erro ao cadastrar a Produto");
         }
       }
     }

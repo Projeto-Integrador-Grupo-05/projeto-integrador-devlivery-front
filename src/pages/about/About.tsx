@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 const faqItems = [
   {
@@ -75,7 +76,7 @@ const cards = [
     photo: "https://i.imgur.com/zaWKrGm.png",
     name: "Naiara Costa",
     description:
-      "Sou estudante de Análise e Desenvolvimento de Sistemas pelo Senac e participante do bootcamp da Generation, onde desenvolvo habilidades em desenvolvimento full-stack, metodologias ágeis e soft skills voltadas ao mercado de tecnologia. Minha experiência anterior como Agente de Organização Escolar fortaleceu minha capacidade de organização, responsabilidade e trabalho em equipe, competências que aplico no dia Link dia.",
+      "Sou estudante de Análise e Desenvolvimento de Sistemas pelo Senac e participante do bootcamp da Generation, onde desenvolvo habilidades em desenvolvimento full-stack, metodologias ágeis e soft skills voltadas ao mercado de tecnologia. Minha experiência anterior como Agente de Organização Escolar fortaleceu minha capacidade de organização, responsabilidade e trabalho em equipe, competências que aplico no dia a dia.",
     github: "https://github.com/devnaiara",
     linkedin: "https://www.linkedin.com/in/naiara-paula-costa/",
     qrcode: "https://qr-codes-svg.s3.amazonaws.com/SGEtMV.svg?1738690145301",
@@ -97,7 +98,7 @@ const cards = [
     photo: "https://i.imgur.com/mKCWpWo.jpeg",
     name: "Rafael Aparecido",
     description:
-      "Sou um profissional dedicado e em constante evolução, com experiência em atendimento ao cliente. Atuei como Operador de Telemarketing no Grupo AKRK, onde desenvolvi competências em comunicação, negociação e resolução de problemas ao oferecer soluções financeiras personalizadas, como empréstimos consignados. Atualmente, estou aprofundando meus estudos no bootcamp de Desenvolvimento Java pela Generation Brazil, onde aprendo Link criar soluções tecnológicas completas utilizando HTML, CSS, Java e o framework Spring.",
+      "Sou um profissional dedicado e em constante evolução, com experiência em atendimento ao cliente. Atuei como Operador de Telemarketing no Grupo AKRK, onde desenvolvi competências em comunicação, negociação e resolução de problemas ao oferecer soluções financeiras personalizadas, como empréstimos consignados. Atualmente, estou aprofundando meus estudos no bootcamp de Desenvolvimento Java pela Generation Brazil, onde aprendo a criar soluções tecnológicas completas utilizando HTML, CSS, Java e o framework Spring.",
     github: "https://github.com/Rafassz",
     linkedin: "https://www.linkedin.com/in/rafael-aparecido-macedo/",
     qrcode: "https://qr-codes-svg.s3.amazonaws.com/UFZouN.svg?1738690145301",
@@ -163,13 +164,13 @@ export default function About() {
               />
             </div>
             <p className="text-lg text-justify">
-              O DevLivery é Link plataforma ideal para quem busca praticidade,
+              O DevLivery é a plataforma ideal para quem busca praticidade,
               rapidez e segurança na hora de fazer compras online. Com uma
               interface moderna e intuitiva, oferecemos uma experiência única,
               conectando você aos melhores produtos e serviços com apenas alguns
               cliques. Seja para adquirir um item essencial ou aproveitar uma
-              oferta imperdível, o DevLivery é Link sua melhor escolha para
-              compras online!
+              oferta imperdível, o DevLivery é a sua melhor escolha para compras
+              online!
             </p>
           </div>
         </motion.div>
