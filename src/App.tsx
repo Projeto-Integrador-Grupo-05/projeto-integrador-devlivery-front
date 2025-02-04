@@ -7,11 +7,8 @@ import Navbar from "./components/navbar/Navbar";
 import { AuthProvider } from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import Home from "./pages/home/Home";
-
 import Login from "./pages/login/Login";
-import Cadastro from "./pages/cadastro/Cadastro";
-
-import Perfil from "./pages/perfil/Perfil";
+import Cadastro from "./pages/cadastro/Cadastro";;
 import "react-toastify/dist/ReactToastify.css";
 import About from "./pages/about/About";
 import ListaProdutos from "./components/produtos/listaprodutos/ListaProdutos";
