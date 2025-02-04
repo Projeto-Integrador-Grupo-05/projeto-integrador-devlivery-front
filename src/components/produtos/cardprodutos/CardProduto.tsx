@@ -1,4 +1,4 @@
-import { Leaf } from "lucide-react";
+import { Leaf, ShoppingCart } from "lucide-react";
 import Produto from "../../../models/Produto";
 
 interface CardProdutosProps {
@@ -49,12 +49,7 @@ function CardProduto({ produto }: CardProdutosProps) {
         className="flex items-center gap-1 bg-red-600 text-white rounded-xl px-5 py-2 mt-10 hover:scale-105 transition-transform hover:shadow-2xl"
         onClick={adicionarAoCarrinho}
       >
-        <img
-          src="src/assets/icons/shopping-cart.svg"
-          width="20px"
-          className="invert"
-          alt="Ícone de um carrinho"
-        />
+        <ShoppingCart />
         Adicionar ao carrinho
       </button>
     </div>
