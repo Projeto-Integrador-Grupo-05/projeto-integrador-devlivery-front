@@ -96,7 +96,7 @@ function ListaCategoria() {
 
   async function atualizarCategoria(categoria: Categoria) {
     try {
-      await atualizar(`/categoria`, categoria, setCategorias, {
+      await atualizar(`/categoria`, categoria, {
         headers: { Authorization: token },
       });
       ToastAlerta("Categoria atualizada com sucesso!", "sucesso");

@@ -56,7 +56,7 @@ function FormCategoria() {
 
     if (id !== undefined) {
       try {
-        await atualizar(`/categoria`, categoria, setCategoria, {
+        await atualizar(`/categoria`, categoria, {
           headers: { Authorization: token },
         });
         ToastAlerta("A Categoria foi atualizada com sucesso!", "info");
