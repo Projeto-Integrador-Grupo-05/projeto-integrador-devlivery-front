@@ -4,10 +4,13 @@ import Search from "../search/Search";
 import { AuthContext } from "../../context/AuthContext";
 import { ToastAlerta } from "../../utils/ToastAlerta";
 import { useNavigate } from "react-router-dom";
+import ModalPerfil from "../../pages/modalperfil/ModalPerfil";
+import Perfil from "../../pages/perfil/Perfil";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false); // Estado para saber se rolou a página
+  const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -56,18 +59,23 @@ function Navbar() {
   let component: ReactNode;
 
   return (
-    <nav className={`flex justify-between items-center bg-gray-900 text-white p-4 ${isScrolled ? 'fixed top-0 left-0 w-full z-10' : ''}`}>
+    <nav
+      className={`flex justify-between items-center bg-gray-900 text-white p-4 ${
+        isScrolled ? "fixed top-0 left-0 w-full z-10" : ""
+      }`}
+    >
       <img
         src="https://i.imgur.com/fBJcXWf.png"
         alt="LogoDevlivery"
-        className="w-32"
+        className="w-16 ml-10"
       />
 
-      <div className="flex items-center gap-2 border rounded-full w-full md:w-1/3 lg:w-1/4 px-4 py-2 bg-gray-200">
-        <input
-          type="text"
-          placeholder="Buscar..."
-          className="bg-transparent text-black outline-none w-full"
+      <Search />
+
+      <div className="flex items-center space-x-6 pr-4">
+        <ShoppingCart
+          className="w-6 h-6 text-[#fff6cc] cursor-pointer hover:text-[#ff3c00]"
+          onClick={handleCartClick}
         />
 
         <div className="relative" ref={menuRef}>
@@ -84,9 +92,12 @@ function Navbar() {
                 ? (component = (
                     <>
                       <a
-                        href="#"
+                        onClick={() => setOpen(true)}
                         className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
                       >
+                        <ModalPerfil open={open} onClose={() => setOpen(false)}>
+                          <Perfil />
+                        </ModalPerfil>
                         Meu Perfil
                       </a>
                       <a
@@ -94,6 +105,12 @@ function Navbar() {
                         className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
                       >
                         Meu Carrinho
+                      </a>
+                      <a
+                        href="/about"
+                        className="block px-4 py-2 hover:bg-[#ff3c00] hover:text-[#fff6cc]"
+                      >
+                        Sobre
                       </a>
                       <hr />
                       <button
