@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { resetCart, addToCart } from "../../redux/OrebiSlice";
 import CardProduto from "./CardProduto";
@@ -13,6 +13,7 @@ const Carrinho = () => {
   const produtos = useSelector((state) => state.orebiReducer.produtos);
   const [totalAmt, setTotalAmt] = useState("");
   const [shippingCharge, setShippingCharge] = useState("");
+  const navigate = useNavigate();
 
   // Função para adicionar produto de teste
   useEffect(() => {
@@ -98,13 +99,21 @@ const Carrinho = () => {
           <CardProduto key={produto.idProduto} produto={produto} />
         ))}
       </div>
-
+    
+      <div className="">
       <button
         onClick={() => dispatch(resetCart())}
-        className="py-2 px-10 bg-red-500 text-white font-semibold uppercase mb-4 hover:bg-red-700 duration-300"
+        className="py-2 px-10 bg-red-500 text-white font-bold uppercase mb-4 hover:bg-red-700 duration-300 mr-4"
       >
         Limpar carrinho
       </button>
+      <button
+        onClick={() => navigate('/produtos')}
+        className="py-2 px-10 bg-blue-500 text-white font-bold uppercase mb-4 hover:bg-blue-600 duration-300"
+      >
+        + Produtos
+      </button>
+    </div>
 
       <div className="max-w-7xl gap-4 flex justify-center mt-4">
         <div className="w-full md:w-96 flex flex-col gap-4">
@@ -161,7 +170,7 @@ const Carrinho = () => {
         <p className="text-sm text-center px-10 -mt-2">
           Seu carrinho de compras está vazio! Adicione produtos.
         </p>
-        <Link to="/listaprodutos">
+        <Link to="/produtos">
           <button className="bg-black rounded-md cursor-pointer hover:bg-white active:bg-gray-900 px-8 py-2 font-titleFont font-semibold text-lg text-gray-200 hover:text-black duration-300">
             Continuar Comprando
           </button>

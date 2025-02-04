@@ -43,8 +43,9 @@ function Navbar() {
   }, []);
 
   const handleCartClick = () => {
-    if (!token) {
-      alert("Você precisa estar logado para acessar o carrinho!");
+    if (usuario.token  == '') {
+      ToastAlerta("Você precisa estar logado para acessar o carrinho!", "info");
+      navigate("/login")
     } else {
       window.location.href = "/carrinho";
     }
