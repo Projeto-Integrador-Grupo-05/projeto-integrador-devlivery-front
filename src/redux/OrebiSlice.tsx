@@ -1,14 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Produto from "../models/Produto";
+
+interface State {
+  produtos: {
+    produto: Produto;
+    quantidade: number;
+  }[];
+}
 
 const initialState = {
-  produtos: [
-    {
-      id: "",
-      nome: "",
-      preco: 0,
-      quantidade: 0,
-    },
-  ],
+  produtos: [],
 };
 
 export const orebiSlice = createSlice({
@@ -16,18 +17,21 @@ export const orebiSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      const produto = state.produtos.find(
-        (produto) => produto.id === action.payload.id
+      const produtoExistente = state.produtos.find(
+        (item) => item.idProduto.idProduto === action.payload.idProduto
       );
-      if (produto) {
-        produto.quantidade += action.payload.quantidade;
+      if (produtoExistente) {
+        produtoExistente.quantidade += action.payload.quantidade;
       } else {
-        state.produtos.push({ ...action.payload, quantidade: 1 });
+        state.produtos.push({
+          produto: { ...action.payload },
+          quantidade: action.payload.quantidade || 1,
+        });
       }
     },
     increaseQuantity: (state, action) => {
       const produto = state.produtos.find(
-        (produto) => produto.id === action.payload.id
+        (item) => item.idProduto === action.payload.idProduto
       );
       if (produto) {
         produto.quantidade++;
@@ -35,7 +39,7 @@ export const orebiSlice = createSlice({
     },
     decreaseQuantity: (state, action) => {
       const produto = state.produtos.find(
-        (produto) => produto.id === action.payload.id
+        (produto) => produto.idProduto === action.payload.idProduto
       );
       if (produto && produto.quantidade > 1) {
         produto.quantidade--;
@@ -43,7 +47,7 @@ export const orebiSlice = createSlice({
     },
     deleteproduto: (state, action) => {
       state.produtos = state.produtos.filter(
-        (produto) => produto.id !== action.payload
+        (produto) => produto.idProduto !== action.payload
       );
     },
     resetCart: (state) => {
