@@ -37,7 +37,12 @@ export const cadastrar = async (
   setDados(resposta.data);
 };
 
-export const atualizar = async (url: string, dados: Object, header: Object) => {
+export const atualizar = async (
+  url: string,
+  dados: Object,
+  header: Object,
+  p0: { headers: { Authorization: string } }
+) => {
   const resposta = await api.put(url, dados, header);
   return resposta.data; // Retorna os dados atualizados
 };
