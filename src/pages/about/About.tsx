@@ -136,7 +136,7 @@ export default function About() {
   const integrantesInView = useInView(integrantesRef, { once: true });
 
   return (
-    <div className="flex justify-center px-4 md:px-6 min-h-screen bg-green-900">
+    <div className="flex justify-center px-4 md:px-6 min-h-screen bg-slate-50">
       <div className="space-y-10 max-w-screen-lg w-full py-10">
 
         <motion.div
@@ -145,7 +145,7 @@ export default function About() {
           animate={missaoInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <div className="bg-green-800 p-8 rounded-lg shadow-md text-white">
+          <div className="bg-gray-900 p-8 rounded-lg shadow-md text-white">
             <h2 className="text-3xl font-bold text-white mb-6 text-center">
               Sobre{" "}
             </h2>
@@ -174,7 +174,7 @@ export default function About() {
           animate={faqInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <section className="bg-green-800 p-8 rounded-lg shadow-md text-white">
+          <section className="bg-gray-900 p-8 rounded-lg shadow-md text-white">
             <h2 className="text-3xl font-bold text-white-400 mb-6 text-center">
               Perguntas Frequentes
             </h2>
@@ -203,14 +203,14 @@ export default function About() {
           animate={integrantesInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 1 }}
         >
-          <h2 className="text-3xl text-center font-bold text-white mb-6">
+          <h2 className="text-3xl text-center font-bold text-gray-900 mb-6">
             Equipe DevLivery
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {cards.map((card, index) => (
               <motion.div
                 key={index}
-                className="relative group overflow-hidden rounded-lg shadow-lg bg-green-800 transform transition-all duration-300 hover:scale-105"
+                className="relative group overflow-hidden rounded-lg shadow-lg bg-gray-900 transform transition-all duration-300 hover:scale-105"
               >
                 <div className="relative w-full h-64 overflow-hidden">
                   <img
