@@ -1,26 +1,11 @@
-﻿
-
-import React, { useState } from "react";
-
-import leite from "../../assets/image/leite.png";
-import whisky from "../../assets/image/whisky.png";
-import chocolate from "../../assets/image/chocolate.png";
-import biscoito from "../../assets/image/biscoito.png";
-import nescau from "../../assets/image/nescau.png";
+﻿import React, { useState } from "react";
 import moça from "../../assets/image/moça.png";
-import neve from "../../assets/image/neve.png";
-import mucilon from "../../assets/image/mucilon.png";
-import confort from "../../assets/image/confort.png";
 import carne from "../../assets/image/carne.png";
-import protetor from "../../assets/image/protetor.png";
-import cauboi from "../../assets/image/cauboi.png";
 import mercado from "../../assets/image/mercado.png";
 import AppStoreImg from "../../assets/image/app_store.png";
 import PlayStoreImg from "../../assets/image/play_store.png";
 import Gif from "../../assets/image/mobile_bike.gif";
-import generation from "../../assets/image/Generation.png";
 import frete from "../../assets/image/frete.png";
-import golpe from "../../assets/image/golpe.png";
 import banner1 from "../../assets/image/banner1.png"; // Novo banner 1
 import banner2 from "../../assets/image/banner2.png"; // Novo banner 2
 import { FaCog, FaBox, FaList } from 'react-icons/fa';
@@ -31,21 +16,10 @@ import './Home.css';
 
 const ImageList = [
   { id: 1, img: moça },
-  { id: 2, img: cauboi },
+  
 ];
 
-const ServicesData = [
-  { id: 1, img: carne },
-  { id: 2, img: confort },
-  { id: 3, img: mucilon },
-  { id: 4, img: neve },
-  { id: 5, img: protetor },
-  { id: 6, img: leite },
-  { id: 7, img: protetor },
-  { id: 8, img: leite },
-  { id: 9, img: protetor },
-  { id: 10, img: leite },
-];
+
 
 const Hero = () => {
   const [imageId, setImageId] = useState(moça);
@@ -70,74 +44,7 @@ const Hero = () => {
     setCurrentBanner((prev) => (prev - 1 + banners.length) % banners.length);
   };
 
-  const categorias = [
-    {
-      id: 1,
-      nome: 'Hortifrut',
-      imagem: "/src/assets/image/horti.png",
-
-      produtos: [
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-
-
-      ]
-    },
-    {
-      id: 2,
-      nome: 'Churrasco',
-      imagem: "/src/assets/image/churrasco.png",
-      produtos: [
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-      ]
-    },
-    {
-      id: 3,
-      nome: 'Churrasco',
-      imagem: "/src/assets/image/churrasco.png",
-      produtos: [
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-      ]
-    },
-    {
-      id: 4,
-      nome: 'Churrasco',
-      imagem: "/src/assets/image/churrasco.png",
-      produtos: [
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-      ]
-    },
-    {
-      id: 5,
-      nome: 'Churrasco',
-      imagem: "/src/assets/image/churrasco.png",
-      produtos: [
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-      ]
-    },
-    {
-      id: 6,
-      nome: 'Churrasco',
-      imagem: "/src/assets/image/churrasco.png",
-      produtos: [
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-        { id: 1, nome: 'Maçã', preco: 'R$ 5,00', img: '../src/assets/image/leite.png' },
-      ]
-    },
-    // Adicione outras categorias conforme necessário
-  ];
-
-
+ 
   return (
     <>
       {/** Inicio do banner */}
@@ -179,8 +86,7 @@ const Hero = () => {
                   alt="Image"
                   className="w-[300px] sm:w-[300px] sm:scale-200 mx-auto"
                   style={{
-                    marginTop: imageId === cauboi ? "20px" : "30px",
-                    marginLeft: "15px",
+                                        marginLeft: "15px",
                     marginRight: "40px",
                   }}
                 />
@@ -213,29 +119,29 @@ const Hero = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {/* Product 1 */}
             <div className="bg-white p-4 rounded-lg shadow-md">
-              <img src="../src/assets/image/picanha.png" alt="Picanha" className="w-full h-48 object-contain rounded-md" />
+              <img src="https://imgur.com/LFtI4KS.jpg" className="w-full h-48 object-contain rounded-md" />
               <h3 className="mt-4 text-xl font-semibold">Picanha Maturatta</h3>
               <p className="mt-2 text-gray-600">R$ 50,00</p>
               <button className="button-style mt-4 w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Adicionar ao Carrinho</button>
             </div>
             {/* Product 2 */}
             <div className="bg-white p-4 rounded-lg shadow-md">
-              <img src="../src/assets/image/nutella.png" alt="nutella" className="w-full h-48 object-contain rounded-md" />
+              <img src="https://imgur.com/9XTiv2P.png" alt="nutella" className="w-full h-48 object-contain rounded-md" />
               <h3 className="mt-4 text-xl font-semibold">Nutella</h3>
               <p className="mt-2 text-gray-600">R$ 30,00</p>
               <button className="button-style mt-4 w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Adicionar ao Carrinho</button>
             </div>
             {/* Product 3 */}
             <div className="bg-white p-4 rounded-lg shadow-md">
-              <img src="../src/assets/image/chalise.png" alt="vinho" className="w-full h-48 object-contain rounded-md" />
-              <h3 className="mt-4 text-xl font-semibold">Vinho Chalise</h3>
+              <img src="https://imgur.com/Di1Vvb7.png" alt="vinho" className="w-full h-48 object-contain rounded-md" />
+              <h3 className="mt-4 text-xl font-semibold">Vinho Halberth</h3>
               <p className="mt-2 text-gray-600">R$ 75,00</p>
               <button className="button-style mt-4 w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Adicionar ao Carrinho</button>
             </div>
             {/* Product 4 */}
             <div className="bg-white p-4 rounded-lg shadow-md">
-              <img src="../src/assets/image/geleia.png" alt="geleia" className="w-full h-48 object-contain rounded-md" />
-              <h3 className="mt-4 text-xl font-semibold">Geleia Queensberry </h3>
+              <img src="https://imgur.com/DX7sznZ.png" alt="geleia" className="w-full h-48 object-contain rounded-md" />
+              <h3 className="mt-4 text-xl font-semibold">Geleia </h3>
               <p className="mt-2 text-gray-600">R$ 20,00</p>
               <button className=" button-style mt-4 w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Adicionar ao Carrinho</button>
             </div>
@@ -243,7 +149,7 @@ const Hero = () => {
         </div>
       </section>
 
-      {/** Início do banner */}
+      {/** Início do banner frete*/}
       <div className="mt-14 mb-14 ml-32 mr-48 rounded-lg overflow-hidden">
         <div className="relative">
           <img
