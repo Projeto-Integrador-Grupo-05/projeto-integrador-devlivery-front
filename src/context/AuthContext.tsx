@@ -25,6 +25,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       : {
           id: 0,
           nome: "",
+          foto:"",
           email: "",
           senha: "",
           tipo: "",
@@ -56,6 +57,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setUsuario({
       id: 0,
       nome: "",
+      foto:"",
       email: "",
       senha: "",
       tipo: "",
