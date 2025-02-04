@@ -3,7 +3,7 @@ import { ShoppingCart, User } from "lucide-react";
 import Search from "../search/Search";
 import { AuthContext } from "../../context/AuthContext";
 import { ToastAlerta } from "../../utils/ToastAlerta";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ModalPerfil from "../../pages/modalperfil/ModalPerfil";
 import Perfil from "../../pages/perfil/Perfil";
 
@@ -63,11 +63,13 @@ function Navbar() {
         isScrolled ? "fixed top-0 left-0 w-full z-10" : ""
       }`}
     >
-      <img
-        src="https://i.imgur.com/fBJcXWf.png"
-        alt="LogoDevlivery"
-        className="w-16 ml-10"
-      />
+      <Link to="/home">
+        <img
+          src="https://i.imgur.com/fBJcXWf.png"
+          alt="LogoDevlivery"
+          className="w-16 ml-10"
+        />
+      </Link>
 
       <Search />
 
