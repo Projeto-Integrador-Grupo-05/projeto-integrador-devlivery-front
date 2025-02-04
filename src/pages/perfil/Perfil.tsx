@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 const Perfil = () => {
   const userType = "Administrador";
@@ -56,12 +57,12 @@ const Perfil = () => {
       {userType === "Administrador" && (
         <div className="mt-4 p-4 bg-[#fff6cc] rounded-lg shadow-inner">
           <h3 className="font-semibold text-[#002914]">Administração</h3>
-          <button className="flex items-center gap-2 bg-[#004d30] text-white px-4 py-2 rounded-lg shadow-lg hover:bg-[#003822] transition-all w-full">
+          <Link to="/produtos"><button className="flex items-center gap-2 bg-[#004d30] text-white px-4 py-2 rounded-lg shadow-lg hover:bg-[#003822] transition-all w-full">
             <FaBoxOpen /> Gerenciar Produtos
-          </button>
-          <button className="flex items-center gap-2 bg-[#004d30] text-white px-4 py-2 rounded-lg shadow-lg hover:bg-[#003822] transition-all w-full">
+          </button></Link>
+          <Link to="/editarcategoria/:id"><button className="flex items-center gap-2 bg-[#004d30] text-white px-4 py-2 rounded-lg shadow-lg hover:bg-[#003822] transition-all w-full">
             <FaTags /> Gerenciar Categorias
-          </button>
+          </button></Link>
         </div>
       )}
 
