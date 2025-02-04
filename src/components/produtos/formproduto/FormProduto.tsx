@@ -7,137 +7,137 @@ import { buscar, atualizar, cadastrar } from "../../../services/Service";
 import { RotatingLines } from "react-loader-spinner";
 
 function FormProduto() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [categorias, setCategorias] = useState<Categoria[]>([]);
 
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [categorias, setCategorias] = useState<Categoria[]>([])
+  const [categoria, setCategoria] = useState<Categoria>({
+    id: 0,
+    nomeCategoria: "",
+    descricao: "",
+  });
+  const [produto, setProduto] = useState<Produto>({} as Produto);
 
-    const [categoria, setCategoria] = useState<Categoria>({ id: 0, nomeCategoria: '', descricao: '' })
-    const [produto, setProduto] = useState<Produto>({} as Produto)
+  const { id } = useParams<{ id: string }>();
 
-    const { id } = useParams<{ id: string }>()
+  const { usuario, handleLogout } = useContext(AuthContext);
+  const token = usuario.token;
 
-    const { usuario, handleLogout } = useContext(AuthContext)
-    const token = usuario.token
-
-    async function buscarProdutoPorId(id: string) {
-        try {
-            await buscar(`/produtos/${id}`, setProduto, {
-                headers: { Authorization: token }
-            })
-        } catch (error: any) {
-            if (error.toString().includes('403')) {
-                handleLogout()
-            }
-        }
+  async function buscarProdutoPorId(id: string) {
+    try {
+      await buscar(`/produtos/${id}`, setProduto, {
+        headers: { Authorization: token },
+      });
+    } catch (error: any) {
+      if (error.toString().includes("403")) {
+        handleLogout();
+      }
     }
+  }
 
-    async function buscarCategoriaPorId(id: string) {
-        try {
-            await buscar(`/categorias/${id}`, setCategoria, {
-                headers: { Authorization: token }
-            })
-        } catch (error: any) {
-            if (error.toString().includes('403')) {
-                handleLogout()
-            }
-        }
+  async function buscarCategoriaPorId(id: string) {
+    try {
+      await buscar(`/categorias/${id}`, setCategoria, {
+        headers: { Authorization: token },
+      });
+    } catch (error: any) {
+      if (error.toString().includes("403")) {
+        handleLogout();
+      }
     }
+  }
 
-    async function buscarCategorias() {
-        try {
-            await buscar('/categorias', setCategorias, {
-                headers: { Authorization: token }
-            })
-        } catch (error: any) {
-            if (error.toString().includes('403')) {
-                handleLogout()
-            }
-        }
+  async function buscarCategorias() {
+    try {
+      await buscar("/categorias", setCategorias, {
+        headers: { Authorization: token },
+      });
+    } catch (error: any) {
+      if (error.toString().includes("403")) {
+        handleLogout();
+      }
     }
+  }
 
-    useEffect(() => {
-        if (token === '') {
-            alert('Você precisa estar logado');
-            navigate('/');
-        }
-    }, [token])
+  useEffect(() => {
+    if (token === "") {
+      alert("Você precisa estar logado");
+      navigate("/");
+    }
+  }, [token]);
 
-    useEffect(() => {
-        buscarCategorias()
+  useEffect(() => {
+    buscarCategorias();
 
-        if (id !== undefined) {
-            buscarProdutoPorId(id)
-        }
-    }, [id])
+    if (id !== undefined) {
+      buscarProdutoPorId(id);
+    }
+  }, [id]);
 
-    useEffect(() => {
-        setProduto({
-            ...produto,
-            categoria: categoria,
-        })
-    }, [categoria])
+  useEffect(() => {
+    setProduto({
+      ...produto,
+      categoria: categoria,
+    });
+  }, [categoria]);
 
-    function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
-        setProduto({
-            ...produto,
-            [e.target.name]: e.target.value,
-            categoria: categoria,
-            usuario: usuario,
+  function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+    setProduto({
+      ...produto,
+      [e.target.name]: e.target.value,
+      categoria: categoria,
+      usuario: usuario,
+    });
+  }
+
+  function retornar() {
+    navigate("/produtos");
+  }
+
+  async function gerarNovoProduto(e: ChangeEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setIsLoading(true);
+
+    if (id !== undefined) {
+      try {
+        await atualizar(`/produtos`, produto, {
+          headers: {
+            Authorization: token,
+          },
         });
-    }
 
-    function retornar() {
-        navigate('/produtos');
-    }
-
-    async function gerarNovoProduto(e: ChangeEvent<HTMLFormElement>) {
-        e.preventDefault()
-        setIsLoading(true)
-
-        if (id !== undefined) {
-            try {
-                await atualizar(`/produtos`, produto, setProduto, {
-                    headers: {
-                        Authorization: token,
-                    },
-                });
-
-                alert('Produto atualizada com sucesso')
-
-            } catch (error: any) {
-                if (error.toString().includes('403')) {
-                    handleLogout()
-                } else {
-                    alert('Erro ao atualizar a Produto')
-                }
-            }
-
+        alert("Produto atualizada com sucesso");
+      } catch (error: any) {
+        if (error.toString().includes("403")) {
+          handleLogout();
         } else {
-            try {
-                await cadastrar(`/produtos`, produto, setProduto, {
-                    headers: {
-                        Authorization: token,
-                    },
-                })
-
-                alert('Produto cadastrada com sucesso');
-
-            } catch (error: any) {
-                if (error.toString().includes('403')) {
-                    handleLogout()
-                } else {
-                    alert('Erro ao cadastrar a Produto');
-                }
-            }
+          alert("Erro ao atualizar a Produto");
         }
+      }
+    } else {
+      try {
+        await cadastrar(`/produtos`, produto, setProduto, {
+          headers: {
+            Authorization: token,
+          },
+        });
 
-        setIsLoading(false)
-        retornar()
+        alert("Produto cadastrada com sucesso");
+      } catch (error: any) {
+        if (error.toString().includes("403")) {
+          handleLogout();
+        } else {
+          alert("Erro ao cadastrar a Produto");
+        }
+      }
     }
 
-    const carregandoCategoria = categoria.descricao === '';
+    setIsLoading(false);
+    retornar();
+  }
+
+  const carregandoCategoria = categoria.descricao === "";
 
   return (
     <div className="container flex flex-col mx-auto items-center">

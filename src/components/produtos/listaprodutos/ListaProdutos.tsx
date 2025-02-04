@@ -15,13 +15,17 @@ function ListaProdutos() {
   const [produtos, setProdutos] = useState<Produto[]>([]);
   const [produtosFiltrados, setProdutosFiltrados] = useState<Produto[]>([]);
   const [criterio, setCriterio] = useState<
-  "preco" | "nomeProduto" | "calorias" | "idProduto"
->("idProduto");
+    "preco" | "nomeProduto" | "calorias" | "idProduto"
+  >("idProduto");
   const [filtrosAtivos, setFiltrosAtivos] = useState(false);
   const [filtroPrecoMax, setFiltroPrecoMax] = useState<number | null>(null);
   const [filtroPrecoMin, setFiltroPrecoMin] = useState<number | null>(null);
-  const [filtroCaloriasMin, setFiltroCaloriasMin] = useState<number | null>(null);
-  const [filtroCaloriasMax, setFiltroCaloriasMax] = useState<number | null>(null);
+  const [filtroCaloriasMin, setFiltroCaloriasMin] = useState<number | null>(
+    null
+  );
+  const [filtroCaloriasMax, setFiltroCaloriasMax] = useState<number | null>(
+    null
+  );
   const [filtroSaudaveis, setFiltroSaudaveis] = useState(false);
 
   useEffect(() => {
@@ -135,7 +139,6 @@ function ListaProdutos() {
     );
   };
 
-  
   function ordenarProdutos(a: Produto, b: Produto) {
     if (criterio === "nomeProduto") {
       return a.nomeProduto.localeCompare(b.nomeProduto);
@@ -149,13 +152,7 @@ function ListaProdutos() {
   return (
     <>
       {produtos.length === 0 && (
-        <DNA
-          visible
-          height="200"
-          width="200"
-          ariaLabel="dna-loading"
-          className="dna-wrapper mx-auto"
-        />
+        <DNA visible height="200" width="200" ariaLabel="dna-loading" />
       )}
 
       <div className="mx-10 my-10">
@@ -168,12 +165,18 @@ function ListaProdutos() {
             / <b>NomeCategoria</b>
           </div>
 
-
-
-          <select 
+          <select
             className="rounded-xl shadow-2xl py-2 px-5 border border-gray-400"
             value={criterio}
-            onChange={(e) => setCriterio(e.target.value as "idProduto" | "preco" | "nomeProduto" | "calorias")}
+            onChange={(e) =>
+              setCriterio(
+                e.target.value as
+                  | "idProduto"
+                  | "preco"
+                  | "nomeProduto"
+                  | "calorias"
+              )
+            }
           >
             <option value="idProduto">Classificar por</option>
             <option value="nomeProduto">Nome</option>
