@@ -55,7 +55,7 @@ const cards = [
     description: "Eu sou uma pessoa analítica e muito focada, tenho objetivos bem definidos e trabalho diariamente neles. Possuo conhecimento sólido em Java e estou mergulhando no aprendizado do Framework Spring. Adquiri diversas certificações pela Alura em Java, APIs REST com Spring Boot, e MySQL. Já atuei como estagiário no Itaú Unibanco, onde pude desenvolver fortes habilidades comportamentais e habilidades técnicas, criando automações em VBA, Automation Anywhere e JavaScript, poupando 200 horas mensais na operação.",
     github: "https://github.com/andrelins07",
     linkedin: "https://www.linkedin.com/in/andrelins07/",
-    qrcode: "https://qr.io/qr-svg/FEYrPH.svg?1738595845202",
+    qrcode: "https://qr-codes-svg.s3.amazonaws.com/FEYrPH.svg?1738690145301",
   },
   {
     title: "Emerson Marques",
@@ -65,7 +65,7 @@ const cards = [
     description: "Desenvolvedor front-end com dois anos de experiência, atualmente aprimorando habilidades em Java Full Stack pelo bootcamp da Generation. Tenho conhecimentos em JavaScript, React, Java e foco em soluções práticas e colaborativas.",
     github: "https://github.com/ninguemzin",
     linkedin: "https://www.linkedin.com/in/emersonalm/",
-    qrcode: "https://qr.io/qr-svg/i5PS4F.svg?1738596329496",
+    qrcode: "https://qr-codes-svg.s3.amazonaws.com/i5PS4F.svg?1738690145301",
   },
   {
     title: "Naiara Costa",
@@ -75,7 +75,7 @@ const cards = [
     description: "Sou estudante de Análise e Desenvolvimento de Sistemas pelo Senac e participante do bootcamp da Generation, onde desenvolvo habilidades em desenvolvimento full-stack, metodologias ágeis e soft skills voltadas ao mercado de tecnologia. Minha experiência anterior como Agente de Organização Escolar fortaleceu minha capacidade de organização, responsabilidade e trabalho em equipe, competências que aplico no dia a dia.",
     github: "https://github.com/devnaiara",
     linkedin: "https://www.linkedin.com/in/naiara-paula-costa/",
-    qrcode: "https://qr.io/qr-svg/SGEtMV.svg?1738596453133",
+    qrcode: "https://qr-codes-svg.s3.amazonaws.com/SGEtMV.svg?1738690145301",
   },
   {
     title: "Nayara Renata",
@@ -85,7 +85,7 @@ const cards = [
     description: "Desenvolvedor Full Stack, com experiência em Java, Spring, MySQL, HTML, CSS, JavaScript, TypeScript e React. Iniciei minha carreira em tecnologia como Analista Técnica na área financeira de uma Big Four, onde trabalhei por 3 anos e meio, desenvolvendo uma sólida base analítica e técnica. Em seguida, migrei para o desenvolvimento e participei do bootcamp da Generation, que me preparou para atuar como Full Stack Java. ",
     github: "https://github.com/NayRenata",
     linkedin: "https://www.linkedin.com/in/nayara-renata-costa-882949125/",
-    qrcode: "https://qr.io/qr-svg/2Rgcjt.svg?1738594929818",
+    qrcode: "https://qr-codes-svg.s3.amazonaws.com/2Rgcjt.svg?1738690145301",
   },
   {
     title: "Rafael Aparecido",
@@ -95,7 +95,7 @@ const cards = [
     description: "Sou um profissional dedicado e em constante evolução, com experiência em atendimento ao cliente. Atuei como Operador de Telemarketing no Grupo AKRK, onde desenvolvi competências em comunicação, negociação e resolução de problemas ao oferecer soluções financeiras personalizadas, como empréstimos consignados. Atualmente, estou aprofundando meus estudos no bootcamp de Desenvolvimento Java pela Generation Brazil, onde aprendo a criar soluções tecnológicas completas utilizando HTML, CSS, Java e o framework Spring.",
     github: "https://github.com/Rafassz",
     linkedin: "https://www.linkedin.com/in/rafael-aparecido-macedo/",
-    qrcode: "https://qr.io/qr-svg/UFZouN.svg?1738596144296",
+    qrcode: "https://qr-codes-svg.s3.amazonaws.com/UFZouN.svg?1738690145301",
   },
   {
     title: "Thayná Santos",
@@ -105,7 +105,7 @@ const cards = [
     description: "Desenvolvedora Full Stack | Estudante da 78ª turma da Generation Brasil e atualmente cursando o 1º semestre do curso técnico em Desenvolvimento de Sistemas na Etec Juscelino Kubitschek de Oliveira. Apaixonada por tecnologia e inovação, com experiência em Java, Spring, MySQL, JavaScript e React, integrando backend e frontend para desenvolver aplicações completas e funcionais. Sempre em busca de novos desafios para aprimorar minhas habilidades e contribuir com projetos que gerem impacto positivo.",
     github: "https://github.com/thaynasimoes",
     linkedin: "https://www.linkedin.com/in/thaynapsimoes/",
-    qrcode: "https://qr.io/qr-svg/COgK91.svg?1738595594250",
+    qrcode: "https://qr-codes-svg.s3.amazonaws.com/COgK91.svg?1738690145301",
   },
   {
     title: "Vinicius Aquino",
@@ -115,7 +115,7 @@ const cards = [
     description: "Conhecimentos técnicos: Java, Spring, HTML + CSS + JS, Angular, React, SQL Server e MySQL. Atualmente, minha rotina divide-se em aprimorar minhas habilidades nas stacks Front-End e Back-End, buscando aprofundar meus conhecimentos em conceitos fundamentais da área. Além disso, estou dedicando tempo para explorar aplicações práticas desses conhecimentos através de projetos pessoais e colaborativos, visando não apenas fortalecer minha base teórica, mas também desenvolver minha capacidade de resolver problemas de forma eficiente e criativa.",
     github: "https://github.com/viniaquino",
     linkedin: "https://www.linkedin.com/in/vini-aquino/",
-    qrcode: "https://qr.io/qr-svg/Q2Xj71.svg?1738595479376",
+    qrcode: "https://qr-codes-svg.s3.amazonaws.com/Q2Xj71.svg?1738690145301",
   },
 ];
 
