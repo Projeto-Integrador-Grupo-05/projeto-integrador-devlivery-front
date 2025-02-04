@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./redux/Store";
 import "./App.css";
@@ -26,30 +26,39 @@ function App() {
       <AuthProvider>
         <ToastContainer />
         <BrowserRouter>
-          <Navbar />
-
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/cadastro" element={<Cadastro />} />
-            <Route path="/login" element={<Login />} />
-
-            <Route path="/about" element={<About />} />
-            <Route path="/produtos" element={<ListaProdutos />} />
-            <Route path="/carrinho" element={<Carrinho />} />
-            <Route path="/categoria" element={<ListaCategoria />} />
-            <Route path="/cadastrarcategoria" element={<FormCategoria />} />
-            <Route path="/editarcategoria/:id" element={<FormCategoria />} />
-            <Route
-              path="/deletarcategoria/:id"
-              element={<DeletarCategoria />}
-            />
-          </Routes>
-
-          <Footer />
+          <MainApp />
         </BrowserRouter>
       </AuthProvider>
     </Provider>
+  );
+}
+
+function MainApp() {
+  const location = useLocation();
+  const hiddenRoutes = ["/login", "/cadastro"];
+  const hideLayout = hiddenRoutes.includes(location.pathname);
+
+  return (
+    <>
+      {!hideLayout && <Navbar />}
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/login" element={<Login />} />
+
+        <Route path="/about" element={<About />} />
+        <Route path="/produtos" element={<ListaProdutos />} />
+        <Route path="/carrinho" element={<Carrinho />} />
+        <Route path="/categoria" element={<ListaCategoria />} />
+        <Route path="/cadastrarcategoria" element={<FormCategoria />} />
+        <Route path="/editarcategoria/:id" element={<FormCategoria />} />
+        <Route path="/deletarcategoria/:id" element={<DeletarCategoria />} />
+      </Routes>
+
+      {!hideLayout && <Footer />}
+    </>
   );
 }
 
