@@ -96,7 +96,7 @@ const Hero = () => {
           <div className="flex items-center">
             <FaList className="mr-2" />
             <span>
-              <Link to="categoria" rel="noopener noreferrer">
+              <Link to="/categoria" rel="noopener noreferrer">
                 Categorias
               </Link>
             </span>
