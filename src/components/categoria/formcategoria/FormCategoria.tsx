@@ -137,7 +137,7 @@ function FormCategoria() {
                     <button
                         className="rounded text-slate-100 font-bold bg-[#ff3c00] 
                                    hover:bg-[#cc2f00] w-1/2 py-2 flex justify-center"
-                        type="button" // Importante: type="button" para evitar submissão do formulário
+                        type="button"
                         onClick={retornar}>
                         Cancelar
                     </button>

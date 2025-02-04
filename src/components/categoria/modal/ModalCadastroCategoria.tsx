@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
 import Categoria from "../../../models/Categoria";
 import { cadastrar } from "../../../services/Service";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 interface ModalProps {
     isOpen: boolean;
@@ -33,14 +34,14 @@ function ModalCadastroCategoria({ isOpen, onClose, atualizarLista }: ModalProps)
             await cadastrar(`/categoria`, Categoria, setCategoria, {
                 headers: { 'Authorization': token }
             });
-            alert('A categoria foi cadastrada com sucesso!');
+            ToastAlerta('A categoria foi cadastrada com sucesso!', 'info');
             atualizarLista(); 
             onClose(); 
         } catch (error: any) {
             if (error.toString().includes('403')) {
                 handleLogout();
             } else {
-                alert('Erro ao cadastrar a categoria.');
+                ToastAlerta('Erro ao cadastrar a categoria.', 'info');
             }
         }
 
