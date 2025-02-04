@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { useRef } from "react";
+import { useRef } from "react"; 
 
 const faqItems = [
   {
