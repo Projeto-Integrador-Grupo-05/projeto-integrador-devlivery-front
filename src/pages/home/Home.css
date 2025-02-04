@@ -17,3 +17,22 @@
   .galeria img:hover {
     box-shadow: 0 0 30px 10px rgba(226, 171, 51, 0.9);
   }
+
+  /*------------------------------------*/
+
+  .button-style {
+    background-color: black;
+    font-weight: bold;
+    color: orangered;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px; /* para borda arredondada */
+    transition: all 0.3s ease;
+  }
+  
+  .button-style:hover {
+    background-color: grey;
+    scale: 1.05; /* Dá um efeito de aumentar o botão */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  

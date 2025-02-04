@@ -9,6 +9,7 @@ import Perfil from "../../pages/perfil/Perfil";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false); // Estado para saber se rolou a página
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -23,7 +24,22 @@ function Navbar() {
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+
+    // Função que monitora a posição do scroll
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true); // Se o scroll passar de 50px, a navbar ficará fixa
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const handleCartClick = () => {
@@ -43,7 +59,11 @@ function Navbar() {
   let component: ReactNode;
 
   return (
-    <nav className="flex justify-between items-center bg-gray-900 text-white p-4">
+    <nav
+      className={`flex justify-between items-center bg-gray-900 text-white p-4 ${
+        isScrolled ? "fixed top-0 left-0 w-full z-10" : ""
+      }`}
+    >
       <img
         src="https://i.imgur.com/fBJcXWf.png"
         alt="LogoDevlivery"
@@ -124,6 +144,5 @@ function Navbar() {
     </nav>
   );
 }
-
 
 export default Navbar;
