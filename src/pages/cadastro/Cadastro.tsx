@@ -61,26 +61,22 @@ function Cadastro() {
     <>
       <div className="flex w-full h-screen bg-gray-100">
         <div className="hidden relative lg:flex h-full w-1/2 items-center justify-center bg-gray-900">
-          <img
-            src="https://i.imgur.com/fBJcXWf.png"
-            alt="LogoDevlivery"
-          />
+          <img src="https://i.imgur.com/fBJcXWf.png" alt="LogoDevlivery" />
         </div>
         <div className="w-full flex flex-col items-center justify-center lg:w-1/2">
-          <div className="w-3/4 bg-white px-10 py-10 rounded-3xl border-2 border-gray-200">
+          <div className="w-3/4 bg-white px-10 py-5 rounded-3xl border-2 border-gray-200">
             <h2 className="text-slate-900 text-3xl font-semibold">Cadastrar</h2>
-            <form
-              className="mt-4"
-              onSubmit={cadastrarNovoUsuario}
-            >
+            <form className="mt-4" onSubmit={cadastrarNovoUsuario}>
               <div className="flex flex-col w-full">
-                <label className="text-lg font-medium" htmlFor="nome">Nome</label>
+                <label className="text-lg font-medium" htmlFor="nome">
+                  Nome
+                </label>
                 <input
                   type="text"
                   id="nome"
                   name="nome"
                   placeholder="Nome"
-                  className='w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent'
+                  className="w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent"
                   value={usuario.nome}
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     atualizarEstado(e)
@@ -88,13 +84,15 @@ function Cadastro() {
                 />
               </div>
               <div className="flex flex-col w-full">
-                <label className="text-lg font-medium" htmlFor="usuario">Usuario</label>
+                <label className="text-lg font-medium" htmlFor="usuario">
+                  Usuario
+                </label>
                 <input
                   type="text"
                   id="email"
                   name="email"
                   placeholder="Email"
-                  className='w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent'
+                  className="w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent"
                   value={usuario.email}
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     atualizarEstado(e)
@@ -102,13 +100,15 @@ function Cadastro() {
                 />
               </div>
               <div className="flex flex-col w-full">
-                <label className="text-lg font-medium" htmlFor="foto">Tipo</label>
+                <label className="text-lg font-medium" htmlFor="foto">
+                  Tipo
+                </label>
                 <input
                   type="text"
                   id="tipo"
                   name="tipo"
                   placeholder="tipo"
-                  className='w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent'
+                  className="w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent"
                   value={usuario.tipo}
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     atualizarEstado(e)
@@ -116,48 +116,59 @@ function Cadastro() {
                 />
               </div>
               <div className="flex flex-col w-full">
-                <label className="text-lg font-medium" htmlFor="foto">Endereco</label>
+                <label className="text-lg font-medium" htmlFor="foto">
+                  Endereco
+                </label>
                 <input
                   type="text"
                   id="endereco"
                   name="endereco"
                   placeholder="endereco"
-                  className='w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent'
+                  className="w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent"
                   value={usuario.endereco}
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     atualizarEstado(e)
                   }
                 />
               </div>
-              <div className="flex flex-col w-full">
-                <label className="text-lg font-medium" htmlFor="senha">Senha</label>
-                <input
-                  type="password"
-                  id="senha"
-                  name="senha"
-                  placeholder="Senha"
-                  className='w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent'
-                  value={usuario.senha}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    atualizarEstado(e)
-                  }
-                />
+              <div className="grid grid-cols-2">
+                <div className="flex flex-col w-full">
+                  <label className="text-lg font-medium" htmlFor="senha">
+                    Senha
+                  </label>
+                  <input
+                    type="password"
+                    id="senha"
+                    name="senha"
+                    placeholder="Senha"
+                    className="w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent"
+                    value={usuario.senha}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      atualizarEstado(e)
+                    }
+                  />
+                </div>
+                <div className="flex flex-col w-full">
+                  <label
+                    className="text-lg font-medium"
+                    htmlFor="confirmarSenha"
+                  >
+                    Confirmar Senha
+                  </label>
+                  <input
+                    type="password"
+                    id="confirmarSenha"
+                    name="confirmarSenha"
+                    placeholder="Confirmar Senha"
+                    className="w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent"
+                    value={confirmaSenha}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      handleConfirmarSenha(e)
+                    }
+                  />
+                </div>
               </div>
-              <div className="flex flex-col w-full">
-                <label className="text-lg font-medium" htmlFor="confirmarSenha">Confirmar Senha</label>
-                <input
-                  type="password"
-                  id="confirmarSenha"
-                  name="confirmarSenha"
-                  placeholder="Confirmar Senha"
-                  className='w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent'
-                  value={confirmaSenha}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    handleConfirmarSenha(e)
-                  }
-                />
-              </div>
-              <div className="mt-8 flex flex-row gap-4">
+              <div className="mt-4 flex flex-row gap-4">
                 <button
                   className="font-semibold rounded-xl text-white bg-red-700  hover:bg-red-400 w-1/2 py-2"
                   onClick={retornar}
@@ -183,16 +194,17 @@ function Cadastro() {
                   )}
                 </button>
               </div>
-              <div className="mt-8 flex justify-center items-center">
+              <div className="mt-2 flex justify-center items-center">
                 <p className="font-medium text-base">Já possui uma conta?</p>
-                <Link to="/login" className="text-indigo-900 text-bold font-medium ml-2">
+                <Link
+                  to="/login"
+                  className="text-indigo-900 text-bold font-medium ml-2"
+                >
                   Faça o login
                 </Link>
-
               </div>
             </form>
           </div>
-
         </div>
       </div>
     </>

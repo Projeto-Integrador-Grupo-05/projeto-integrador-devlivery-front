@@ -34,8 +34,6 @@ function Navbar() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
       window.removeEventListener("scroll", handleScroll);
@@ -43,9 +41,9 @@ function Navbar() {
   }, []);
 
   const handleCartClick = () => {
-    if (usuario.token  == '') {
+    if (usuario.token == "") {
       ToastAlerta("Você precisa estar logado para acessar o carrinho!", "info");
-      navigate("/login")
+      navigate("/login");
     } else {
       window.location.href = "/carrinho";
     }
