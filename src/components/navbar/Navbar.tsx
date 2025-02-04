@@ -9,7 +9,7 @@ import Perfil from "../../pages/perfil/Perfil";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false); // Estado para saber se rolou a página
+  const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -25,10 +25,10 @@ function Navbar() {
     }
     document.addEventListener("mousedown", handleClickOutside);
 
-    // Função que monitora a posição do scroll
+    
     const handleScroll = () => {
       if (window.scrollY > 50) {
-        setIsScrolled(true); // Se o scroll passar de 50px, a navbar ficará fixa
+        setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
@@ -73,10 +73,10 @@ function Navbar() {
       <Search />
 
       <div className="flex items-center space-x-6 pr-4">
-        <ShoppingCart
+        <a href=""><ShoppingCart
           className="w-6 h-6 text-[#fff6cc] cursor-pointer hover:text-[#ff3c00]"
           onClick={handleCartClick}
-        />
+        /></a>
 
         <div className="relative" ref={menuRef}>
           <button
